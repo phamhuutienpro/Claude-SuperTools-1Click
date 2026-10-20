@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ Claude Code Prompt & Skill Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --border-hover: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      --en-accent: #0284c7;
+      --en-light: #f0f9ff;
+      --bi-accent: #8b5cf6;
+      --bi-light: #f5f3ff;
+      --radius: 14px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.03);
+      --shadow-lg: 0 12px 28px -4px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+    .header-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+    }
+    .logo-text h1 {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .logo-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+      outline: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+    }
+    .btn-outline {
+      background: #ffffff;
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      border-color: var(--border-hover);
+      background: #f8fafc;
+    }
+
+    .main-container {
+      max-width: 1380px;
+      margin: 22px auto 0;
+      padding: 0 24px;
+    }
+
+    /* Global Context Bar */
+    .context-bar {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .context-bar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .context-bar-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .context-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 1100px) {
+      .context-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 650px) {
+      .context-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .context-item label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .context-input {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 12.5px;
+      font-family: inherit;
+      background: #f8fafc;
+      color: var(--text-main);
+      transition: all 0.15s ease;
+    }
+    .context-input:focus {
+      background: #ffffff;
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    .context-input.port-input {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #b45309;
+      background: #fffbeb;
+      border-color: #fde68a;
+    }
+
+    /* Search & Filter Bar */
+    .filter-section {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+    .search-box {
+      position: relative;
+      margin-bottom: 12px;
+    }
+    .search-input {
+      width: 100%;
+      padding: 11px 16px 11px 42px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 13.5px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease;
+      background: #f8fafc;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+    }
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .category-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      transition: all 0.15s ease;
+    }
+    .tab-btn:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+    }
+    .tab-btn.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: rgba(79, 70, 229, 0.2);
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(430px, 1fr));
+      gap: 20px;
+    }
+    @media (max-width: 480px) {
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .prompt-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .prompt-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--text-main);
+    }
+    .badge-category {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .card-info-box {
+      font-size: 11.5px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .info-row {
+      padding: 7px 10px;
+      border-radius: 7px;
+      line-height: 1.35;
+    }
+    .info-when {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      color: #92400e;
+    }
+    .info-purpose {
+      background: #ecfdf5;
+      border: 1px solid #d1fae5;
+      color: #065f46;
+    }
+    .info-row b {
+      font-weight: 700;
+    }
+
+    /* Params Box */
+    .params-container {
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .param-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+    }
+    .param-label {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      font-weight: 600;
+      min-width: 65px;
+    }
+    .param-input {
+      flex: 1;
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      font-size: 11px;
+      font-family: inherit;
+      background: #ffffff;
+    }
+    .param-input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    /* Language Switcher Tabs */
+    .lang-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #f1f5f9;
+      padding: 3px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .lang-tab {
+      flex: 1;
+      text-align: center;
+      padding: 4px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      color: var(--text-muted);
+      border: none;
+      background: transparent;
+      transition: all 0.15s ease;
+    }
+    .lang-tab.active {
+      background: #ffffff;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+    .lang-tab[data-lang="en"].active {
+      color: var(--en-accent);
+      font-weight: 700;
+    }
+    .lang-tab[data-lang="bilingual"].active {
+      color: var(--bi-accent);
+      font-weight: 700;
+    }
+
+    /* Prompt Preview Box */
+    .prompt-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      line-height: 1.45;
+      color: #1e293b;
+      margin-bottom: 12px;
+      max-height: 140px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      user-select: all;
+    }
+    .token-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: inherit;
+      margin-left: 4px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+    }
+
+    /* Card Footer & Action Buttons */
+    .card-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid #f1f5f9;
+      padding-top: 10px;
+    }
+    .tool-hint {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .copy-buttons-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+    }
+    .btn-copy-action {
+      padding: 6px 4px;
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-copy-action:hover {
+      background: #f8fafc;
+      border-color: var(--border-hover);
+    }
+    .btn-copy-vi:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+    .btn-copy-en {
+      color: #0369a1;
+      background: #f0f9ff;
+      border-color: #bae6fd;
+    }
+    .btn-copy-en:hover {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+    }
+    .btn-copy-bi {
+      color: #6d28d9;
+      background: #f5f3ff;
+      border-color: #ddd6fe;
+    }
+    .btn-copy-bi:hover {
+      background: #ede9fe;
+      border-color: #c4b5fd;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 580px;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      transform: scale(0.95);
+      transition: transform 0.2s ease;
+    }
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .form-label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .form-control {
+      width: 100%;
+      padding: 7px 11px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 12.5px;
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-icon">⚡</div>
+        <div class="logo-text">
+          <h1>Claude Code Prompt & Skill Hub</h1>
+          <p>Thư viện quản lý Prompt thần thánh · Cổng 3900 · 3 Ngôn ngữ · 2 Đợt xác nhận</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-outline" id="btn-export-json" title="Tải file JSON dữ liệu về máy">
+          <span>📥</span> <span>Xuất JSON</span>
+        </button>
+        <button class="btn btn-primary" id="btn-add-prompt">
+          <span>➕</span> <span>Thêm Prompt Mới</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Global Context Bar: Port, Status, Requirement, Error, Purpose -->
+    <div class="context-bar">
+      <div class="context-bar-header">
+        <div class="context-bar-title">
+          <span>🎯</span> <span>Thanh Ngữ Cảnh & Tham Số Toàn Cục (Tự động truyền vào mọi Prompt)</span>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-outline" id="btn-reset-context" style="padding:4px 8px; font-size:11px;">
+            <span>🔄</span> <span>Mặc định</span>
+          </button>
+        </div>
+      </div>
+      <div class="context-grid">
+        <div class="context-item">
+          <label>Cổng Mạng ({port})</label>
+          <input type="text" id="ctx-port" class="context-input port-input" value="3900" placeholder="3900">
+        </div>
+        <div class="context-item">
+          <label>Tình Trạng ({status})</label>
+          <input type="text" id="ctx-status" class="context-input" value="Đang chạy trên cổng 3900" placeholder="Đang chạy trên cổng 3900">
+        </div>
+        <div class="context-item">
+          <label>Yêu Cầu ({requirement})</label>
+          <input type="text" id="ctx-requirement" class="context-input" value="Khắc phục triệt để và giữ nguyên logic code" placeholder="Yêu cầu kỹ thuật...">
+        </div>
+        <div class="context-item">
+          <label>Mô Tả Lỗi ({error})</label>
+          <input type="text" id="ctx-error" class="context-input" value="Lỗi tải hoặc xung đột giao diện" placeholder="Chi tiết lỗi...">
+        </div>
+        <div class="context-item">
+          <label>Mục Đích Mong Muốn ({purpose})</label>
+          <input type="text" id="ctx-purpose" class="context-input" value="Ứng dụng hoạt động mượt mà, ổn định" placeholder="Kết quả kỳ vọng...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" class="search-input" placeholder="Tìm kiếm nhanh prompt (ví dụ: 'đơ', 'freeze', '3900', 'đóng gói', 'screenshot', 'memory')...">
+      </div>
+      <div class="category-tabs" id="category-tabs">
+        <button class="tab-btn active" data-cat="all">Tất cả (<span id="count-all">0</span>)</button>
+        <button class="tab-btn" data-cat="browser">🌐 Trình Duyệt & Bắt Bệnh UI</button>
+        <button class="tab-btn" data-cat="daemon">⚡ Server & Daemon Ngầm</button>
+        <button class="tab-btn" data-cat="packaging">📦 Đóng Gói Exe</button>
+        <button class="tab-btn" data-cat="visual">🖼️ So Sánh Thị Giác UI</button>
+        <button class="tab-btn" data-cat="knowledge">📚 Kho Tri Thức Bộ Nhớ</button>
+        <button class="tab-btn" data-cat="coding">🚀 Lập Trình Cặp & Refactor</button>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="cards-grid" id="cards-grid"></div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast">
+    <span>✅</span> <span id="toast-msg">Đã sao chép prompt vào Clipboard!</span>
+  </div>
+
+  <!-- Modal Thêm Prompt Mới -->
+  <div class="modal-overlay" id="add-modal">
+    <div class="modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="font-size:16px; font-weight:700;">➕ Thêm Prompt Mới</h3>
+        <button id="modal-close-btn" style="background:none; border:none; font-size:18px; cursor:pointer;">✕</button>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tên Tiêu Đề Prompt</label>
+        <input type="text" id="new-title" class="form-control" placeholder="Ví dụ: Kiểm tra memory leak của server">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Danh Mục</label>
+        <select id="new-category" class="form-control">
+          <option value="browser">🌐 Trình Duyệt & Bắt Bệnh UI</option>
+          <option value="daemon">⚡ Server & Tiến Trình Ngầm</option>
+          <option value="packaging">📦 Đóng Gói Ứng Dụng Exe</option>
+          <option value="visual">🖼️ So Sánh Thị Giác UI</option>
+          <option value="knowledge">📚 Kho Tri Thức & Bộ Nhớ</option>
+          <option value="coding">🚀 Lập Trình Cặp & Code Refactor</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Khi Nào Cần Dùng</label>
+        <input type="text" id="new-when" class="form-control" placeholder="Khi ram tăng cao, khi server crash...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Để Làm Gì</label>
+        <input type="text" id="new-purpose" class="form-control" placeholder="Đo đạc heap used và tìm file gây leak...">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nội Dung Prompt Tiếng Việt</label>
+        <textarea id="new-prompt-vi" class="form-control" rows="2" placeholder="Hãy kiểm tra {file} và tìm vị trí gây rò rỉ bộ nhớ..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nội Dung Prompt Tiếng Anh (Token Saver)</label>
+        <textarea id="new-prompt-en" class="form-control" rows="2" placeholder="Check {file} for memory leaks and fix it..."></textarea>
+      </div>
+      <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:14px;">
+        <button class="btn btn-outline" id="modal-cancel-btn">Hủy</button>
+        <button class="btn btn-primary" id="modal-save-btn">Lưu Prompt</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let PROMPTS_DATA = [];
+    let currentCategory = 'all';
+    let searchQuery = '';
+    const cardActiveLang = {}; // cardId -> 'vi' | 'en' | 'bilingual'
+
+    const SUFFIX_VI = "\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.";
+    const SUFFIX_EN = "\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.";
+
+    // Get current global context values
+    function getContextValues() {
+      return {
+        port: document.getElementById('ctx-port')?.value.trim() || '3900',
+        status: document.getElementById('ctx-status')?.value.trim() || 'Đang chạy trên cổng 3900',
+        requirement: document.getElementById('ctx-requirement')?.value.trim() || 'Khắc phục triệt để và giữ nguyên logic code',
+        error: document.getElementById('ctx-error')?.value.trim() || 'Lỗi tải hoặc xung đột giao diện',
+        purpose: document.getElementById('ctx-purpose')?.value.trim() || 'Ứng dụng hoạt động mượt mà, ổn định'
+      };
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+
+    async function loadPrompts() {
+      const saved = localStorage.getItem('claude_prompts_custom');
+      if (saved) {
+        try {
+          PROMPTS_DATA = JSON.parse(saved);
+          render();
+          return;
+        } catch(e) {}
+      }
+
+      try {
+        const res = await fetch('prompts_library.json');
+        if (res.ok) {
+          PROMPTS_DATA = await res.json();
+          render();
+          return;
+        }
+      } catch(e) {}
+    }
+
+    // Build the rendered prompt for a specific language
+    function buildPromptText(item, lang = 'vi', cardEl = null) {
+      let template = '';
+      if (lang === 'en') {
+        template = item.prompt_template_en || item.prompt_template || '';
+      } else if (lang === 'bilingual') {
+        template = item.prompt_template_bilingual || `${item.prompt_template_vi || item.prompt_template || ''}\n\n[ENGLISH VERSION]\n${item.prompt_template_en || ''}`;
+      } else {
+        template = item.prompt_template_vi || item.prompt_template || '';
+      }
+
+      // Merge context values with card specific inputs
+      const ctx = getContextValues();
+      let mergedParams = { ...item.default_params, ...ctx };
+
+      if (cardEl) {
+        cardEl.querySelectorAll('.param-input').forEach(inp => {
+          const p = inp.dataset.param;
+          if (p && inp.value.trim()) {
+            mergedParams[p] = inp.value.trim();
+          }
+        });
+      }
+
+      // Format URL if port changed
+      if (mergedParams.url && mergedParams.port && mergedParams.url.includes('localhost:')) {
+        mergedParams.url = mergedParams.url.replace(/localhost:\d+/, `localhost:${mergedParams.port}`);
+      }
+
+      let result = template;
+      for (const [key, val] of Object.entries(mergedParams)) {
+        result = result.replaceAll(`{${key}}`, val);
+      }
+
+      // Ensure 2 rounds prompt suffix is present
+      if (lang === 'en') {
+        if (!result.includes("ASK ME IN 2 ROUNDS")) {
+          result = result.trim() + SUFFIX_EN;
+        }
+      } else {
+        if (!result.includes("HỎI LẠI 2 đợt")) {
+          result = result.trim() + SUFFIX_VI;
+        }
+      }
+
+      return result;
+    }
+
+    function copyToClipboard(text, successMsg, triggerBtn) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg);
+        if (triggerBtn) {
+          const original = triggerBtn.innerHTML;
+          triggerBtn.innerHTML = `<span>✅</span> <span>Đã chép!</span>`;
+          triggerBtn.style.background = '#10b981';
+          triggerBtn.style.color = '#ffffff';
+          setTimeout(() => {
+            triggerBtn.innerHTML = original;
+            triggerBtn.style.background = '';
+            triggerBtn.style.color = '';
+          }, 1500);
+        }
+      });
+    }
+
+    function render() {
+      const grid = document.getElementById('cards-grid');
+      grid.innerHTML = '';
+
+      const filtered = PROMPTS_DATA.filter(item => {
+        const matchCat = currentCategory === 'all' || item.category === currentCategory;
+        const q = searchQuery.toLowerCase().trim();
+        const fullContent = [
+          item.title,
+          item.trigger_when,
+          item.purpose,
+          item.prompt_template_vi,
+          item.prompt_template_en,
+          item.prompt_template_bilingual,
+          item.prompt_template,
+          (item.tags || []).join(' ')
+        ].filter(Boolean).join(' ').toLowerCase();
+
+        return matchCat && (!q || fullContent.includes(q));
+      });
+
+      document.getElementById('count-all').textContent = PROMPTS_DATA.length;
+
+      filtered.forEach(item => {
+        if (!cardActiveLang[item.id]) {
+          cardActiveLang[item.id] = 'vi';
+        }
+
+        const card = document.createElement('div');
+        card.className = 'prompt-card';
+        card.dataset.id = item.id;
+
+        // Render card-specific Params (skip port since it's global)
+        let paramsHtml = '';
+        const specificParams = { ...(item.default_params || {}) };
+        delete specificParams.port; // handled globally
+
+        if (Object.keys(specificParams).length > 0) {
+          paramsHtml = `<div class="params-container">`;
+          for (const [k, v] of Object.entries(specificParams)) {
+            paramsHtml += `
+              <div class="param-item">
+                <span class="param-label">{${k}}:</span>
+                <input type="text" class="param-input" data-param="${k}" value="${v}">
+              </div>
+            `;
+          }
+          paramsHtml += `</div>`;
+        }
+
+        const activeLang = cardActiveLang[item.id];
+
+        card.innerHTML = `
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">${item.icon || '📌'}</span>
+                <h3 class="card-title">${item.title}</h3>
+              </div>
+              <span class="badge-category">${item.category_name || item.category}</span>
+            </div>
+
+            <div class="card-info-box">
+              <div class="info-row info-when">
+                <b>Khi nào dùng:</b> ${item.trigger_when}
+              </div>
+              <div class="info-row info-purpose">
+                <b>Để làm gì:</b> ${item.purpose}
+              </div>
+            </div>
+
+            ${paramsHtml}
+
+            <!-- Language Tabs -->
+            <div class="lang-tabs">
+              <button class="lang-tab ${activeLang === 'vi' ? 'active' : ''}" data-lang="vi">
+                🇻🇳 Tiếng Việt
+              </button>
+              <button class="lang-tab ${activeLang === 'en' ? 'active' : ''}" data-lang="en">
+                ⚡ English <span class="token-badge">-40% Token</span>
+              </button>
+              <button class="lang-tab ${activeLang === 'bilingual' ? 'active' : ''}" data-lang="bilingual">
+                🌐 Song Ngữ
+              </button>
+            </div>
+
+            <div class="prompt-box" id="preview-${item.id}">${buildPromptText(item, activeLang, card)}</div>
+          </div>
+
+          <div class="card-footer">
+            <div class="tool-hint">
+              <span>⚡ Tool:</span> <b>${item.tool_command || 'claude'}</b>
+            </div>
+            <div class="copy-buttons-group">
+              <button class="btn-copy-action btn-copy-vi" title="Sao chép phiên bản Tiếng Việt">
+                <span>📋</span> <span>Copy VI</span>
+              </button>
+              <button class="btn-copy-action btn-copy-en" title="Sao chép phiên bản Tiếng Anh (Tiết kiệm token)">
+                <span>⚡</span> <span>Copy EN</span>
+              </button>
+              <button class="btn-copy-action btn-copy-bi" title="Sao chép cả 2 bản song ngữ">
+                <span>🌐</span> <span>Song Ngữ</span>
+              </button>
+            </div>
+          </div>
+        `;
+
+        // Update preview helper
+        const updateCardPreview = () => {
+          const currentLang = cardActiveLang[item.id] || 'vi';
+          const previewEl = card.querySelector(`#preview-${item.id}`);
+          if (previewEl) {
+            previewEl.textContent = buildPromptText(item, currentLang, card);
+          }
+        };
+
+        // Tab click events
+        card.querySelectorAll('.lang-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            card.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            cardActiveLang[item.id] = tab.dataset.lang;
+            updateCardPreview();
+          });
+        });
+
+        // Param input listeners
+        card.querySelectorAll('.param-input').forEach(inp => {
+          inp.addEventListener('input', updateCardPreview);
+        });
+
+        // Copy button events
+        card.querySelector('.btn-copy-vi').addEventListener('click', (e) => {
+          const text = buildPromptText(item, 'vi', card);
+          copyToClipboard(text, `Đã chép bản Tiếng Việt: "${item.title}"`, e.currentTarget);
+        });
+
+        card.querySelector('.btn-copy-en').addEventListener('click', (e) => {
+          const text = buildPromptText(item, 'en', card);
+          copyToClipboard(text, `Đã chép bản Tiếng Anh (Tiết kiệm token): "${item.title}"`, e.currentTarget);
+        });
+
+        card.querySelector('.btn-copy-bi').addEventListener('click', (e) => {
+          const text = buildPromptText(item, 'bilingual', card);
+          copyToClipboard(text, `Đã chép bản Song Ngữ: "${item.title}"`, e.currentTarget);
+        });
+
+        grid.appendChild(card);
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <div style="font-size: 40px; margin-bottom: 12px;">🔍</div>
+            <p style="font-weight: 600; font-size: 15px;">Không tìm thấy prompt nào phù hợp với từ khóa "${searchQuery}"</p>
+            <p style="font-size: 13px; margin-top: 4px;">Hãy thử tìm bằng từ khóa khác hoặc bấm nút "Thêm Prompt Mới" ở góc trên.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Refresh all card previews when global context inputs change
+    ['ctx-port', 'ctx-status', 'ctx-requirement', 'ctx-error', 'ctx-purpose'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        document.querySelectorAll('.prompt-card').forEach(card => {
+          const itemId = card.dataset.id;
+          const item = PROMPTS_DATA.find(x => x.id === itemId);
+          if (item) {
+            const currentLang = cardActiveLang[itemId] || 'vi';
+            const previewEl = card.querySelector(`#preview-${itemId}`);
+            if (previewEl) previewEl.textContent = buildPromptText(item, currentLang, card);
+          }
+        });
+      });
+    });
+
+    // Reset Context Defaults
+    document.getElementById('btn-reset-context').addEventListener('click', () => {
+      document.getElementById('ctx-port').value = '3900';
+      document.getElementById('ctx-status').value = 'Đang chạy trên cổng 3900';
+      document.getElementById('ctx-requirement').value = 'Khắc phục triệt để và giữ nguyên logic code';
+      document.getElementById('ctx-error').value = 'Lỗi tải hoặc xung đột giao diện';
+      document.getElementById('ctx-purpose').value = 'Ứng dụng hoạt động mượt mà, ổn định';
+      render();
+      showToast('Đã đặt lại tham số ngữ cảnh mặc định (Cổng 3900)!');
+    });
+
+    // Search input
+    document.getElementById('search-input').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      render();
+    });
+
+    // Category filter tabs
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.cat;
+        render();
+      });
+    });
+
+    // Export JSON
+    document.getElementById('btn-export-json').addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(PROMPTS_DATA, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'prompts_library_export.json';
+      a.click();
+      showToast('Đã xuất file prompts_library_export.json');
+    });
+
+    // Add Prompt Modal
+    const modal = document.getElementById('add-modal');
+    document.getElementById('btn-add-prompt').addEventListener('click', () => modal.classList.add('active'));
+    document.getElementById('modal-close-btn').addEventListener('click', () => modal.classList.remove('active'));
+    document.getElementById('modal-cancel-btn').addEventListener('click', () => modal.classList.remove('active'));
+
+    document.getElementById('modal-save-btn').addEventListener('click', () => {
+      const title = document.getElementById('new-title').value.trim();
+      const category = document.getElementById('new-category').value;
+      const when = document.getElementById('new-when').value.trim();
+      const purpose = document.getElementById('new-purpose').value.trim();
+      const promptVi = document.getElementById('new-prompt-vi').value.trim();
+      const promptEn = document.getElementById('new-prompt-en').value.trim();
+
+      if (!title || (!promptVi && !promptEn)) {
+        alert('Vui lòng nhập tiêu đề và ít nhất một nội dung prompt!');
+        return;
+      }
+
+      const newItem = {
+        id: 'custom-' + Date.now(),
+        category,
+        category_name: document.getElementById('new-category').options[document.getElementById('new-category').selectedIndex].text,
+        icon: '📌',
+        title,
+        trigger_when: when || 'Theo yêu cầu của người dùng',
+        purpose: purpose || 'Thực thi tác vụ tùy biến',
+        tool_command: 'claude',
+        prompt_template_vi: (promptVi || promptEn) + SUFFIX_VI,
+        prompt_template_en: (promptEn || promptVi) + SUFFIX_EN,
+        prompt_template_bilingual: `${promptVi || promptEn}${SUFFIX_VI}\n\n[ENGLISH TOKEN SAVER]\n${promptEn || promptVi}${SUFFIX_EN}`,
+        default_params: {
+          port: '3900'
+        },
+        tags: [category, 'custom']
+      };
+
+      PROMPTS_DATA.unshift(newItem);
+      localStorage.setItem('claude_prompts_custom', JSON.stringify(PROMPTS_DATA));
+      render();
+      modal.classList.remove('active');
+      showToast('Đã thêm prompt mới thành công!');
+
+      document.getElementById('new-title').value = '';
+      document.getElementById('new-when').value = '';
+      document.getElementById('new-purpose').value = '';
+      document.getElementById('new-prompt-vi').value = '';
+      document.getElementById('new-prompt-en').value = '';
+    });
+
+    // Init
+    loadPrompts();
+  </script>
+</body>
+</html>

@@ -1,0 +1,527 @@
+[
+    {
+        "id":  "ui-freeze-detect",
+        "category":  "browser",
+        "category_name":  "🌐 Trình Duyệt \u0026 Bắt Bệnh UI",
+        "icon":  "❄️",
+        "title":  "Chẩn đoán giao diện bị đơ cứng, không bấm được (UI Freeze)",
+        "trigger_when":  "Khi click vào bất kỳ nút nào trên web đều không phản hồi, trang web bị đơ (UI Freeze), CPU trình duyệt tăng cao hoặc nghi ngờ có vòng lặp vô hạn, re-render liên tục.",
+        "purpose":  "Đo độ trễ Main Thread qua Chrome DevTools Protocol (CDP), phát hiện chính xác vị trí vòng lặp JavaScript gây nghẽn Event Loop và đề xuất code sửa dứt điểm.",
+        "tool_command":  "cdp-browse http://127.0.0.1:{port}",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Giao diện web đang bị đơ cứng, không click được nút nào",
+                               "requirement":  "Tìm nguyên nhân nghẽn Event Loop và sửa dứt điểm",
+                               "error":  "CPU trình duyệt tăng cao, không phản hồi click",
+                               "purpose":  "Phục hồi tương tác mượt mà cho toàn bộ giao diện"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại cổng {port}.\nMô tả lỗi: {error}.\nYêu cầu: {requirement}. Hãy dùng công cụ cdp-browse kiểm tra địa chỉ http://127.0.0.1:{port}, phân tích độ trễ Event Loop và đọc file browser_diagnostic_report.md để xác định hàm/vòng lặp/MutationObserver gây nghẽn.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Current status: {status} at port {port}.\nObserved error: {error}.\nRequirement: {requirement}. Use cdp-browse tool to diagnose http://127.0.0.1:{port}, inspect browser_diagnostic_report.md to locate the infinite loop/Event Loop bottleneck, and patch the code.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status} (Port: {port})\nERROR / MÔ TẢ LỖI: {error}\nREQUIREMENT / YÊU CẦU: {requirement}\nRun browser diagnosis via cdp-browse at http://127.0.0.1:{port}, inspect browser_diagnostic_report.md to identify the blocking function/re-render storm, and fix the root cause.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "đơ",
+                     "lag",
+                     "freeze",
+                     "main thread",
+                     "không bấm được",
+                     "event loop",
+                     "treo",
+                     "ui freeze"
+                 ]
+    },
+    {
+        "id":  "ui-console-exception",
+        "category":  "browser",
+        "category_name":  "🌐 Trình Duyệt \u0026 Bắt Bệnh UI",
+        "icon":  "🚨",
+        "title":  "Bắt sạch ngoại lệ JavaScript \u0026 Lỗi đỏ Console",
+        "trigger_when":  "Khi trang web bị trắng trang, dữ liệu không hiển thị, hoặc sau khi code tính năng mới nghi ngờ có lỗi runtime (Uncaught TypeError, ReferenceError, SyntaxError...).",
+        "purpose":  "Thu thập toàn bộ Console Logs, Warnings và Uncaught Exceptions trực tiếp từ trình duyệt Chrome/Edge thật, chỉ ra đúng tên file và số dòng bị lỗi.",
+        "tool_command":  "cdp-browse http://127.0.0.1:{port}",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Ứng dụng web bị lỗi hiển thị hoặc trắng trang",
+                               "requirement":  "Thu thập Console Exceptions, xác định file/dòng lỗi và sửa lại",
+                               "error":  "Xuất hiện lỗi đỏ trong Developer Tools Console",
+                               "purpose":  "Khắc phục triệt để lỗi runtime để trang hoạt động ổn định"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại cổng {port}.\nMô tả lỗi: {error}.\nYêu cầu: {requirement}. Hãy chạy chẩn đoán trình duyệt cdp-browse trên http://127.0.0.1:{port}, trích xuất toàn bộ Exceptions và Console Logs trong báo cáo, sau đó định vị file code gây lỗi và sửa lại giúp tôi.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Current status: {status} on port {port}.\nError log: {error}.\nRequirement: {requirement}. Run browser diagnose via cdp-browse on http://127.0.0.1:{port}, parse all uncaught exceptions and console errors, locate the offending file and fix it.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status} (Port: {port})\nERROR / MÔ TẢ LỖI: {error}\nREQUIREMENT / YÊU CẦU: {requirement}\nExecute cdp-browse against http://127.0.0.1:{port}, inspect console logs and exceptions, pinpoint the bug, and apply the fix.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "lỗi console",
+                     "trắng trang",
+                     "exception",
+                     "typeerror",
+                     "runtime error",
+                     "đỏ console",
+                     "bug js"
+                 ]
+    },
+    {
+        "id":  "ui-screenshot-inspect",
+        "category":  "browser",
+        "category_name":  "🌐 Trình Duyệt \u0026 Bắt Bệnh UI",
+        "icon":  "📸",
+        "title":  "Mở tab kiểm tra thị giác \u0026 Chụp ảnh nghiệm thu",
+        "trigger_when":  "Sau khi tạo mới một trang, route, component hoặc giao diện bất kỳ, cần kiểm tra giao diện mắt thường và lưu bằng chứng nghiệm thu.",
+        "purpose":  "Mở cửa sổ Chrome/Edge thật tại URL chỉ định, kiểm tra độ mượt mà, tự động chụp ảnh màn hình lưu vào browser_diagnostic_screenshot.png để nghiệm thu giao diện.",
+        "tool_command":  "cdp-browse http://127.0.0.1:{port}",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Vừa hoàn thành giao diện mới, cần nghiệm thu",
+                               "requirement":  "Mở trình duyệt kiểm tra hiển thị, chụp ảnh lưu artifact",
+                               "error":  "Cần kiểm tra thị giác bố cục và màu sắc thực tế",
+                               "purpose":  "Xác nhận giao diện chuẩn đẹp không tì vết"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} trên cổng {port}.\nYêu cầu: {requirement}. Hãy dùng cdp-browse mở trang http://127.0.0.1:{port}, xác nhận trang hiển thị mượt mà, chụp lại ảnh màn hình và báo cáo kết quả nghiệm thu.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} on port {port}.\nRequirement: {requirement}. Use cdp-browse to navigate to http://127.0.0.1:{port}, capture a screenshot into browser_diagnostic_screenshot.png, and report visual verification results.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status} (Port: {port})\nREQUIREMENT / YÊU CẦU: {requirement}\nOpen http://127.0.0.1:{port} with cdp-browse, capture a verification screenshot, and summarize visual layout status.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "chụp ảnh",
+                     "screenshot",
+                     "nghiệm thu",
+                     "kiểm tra tab",
+                     "giao diện mới",
+                     "thị giác"
+                 ]
+    },
+    {
+        "id":  "daemon-start-server",
+        "category":  "daemon",
+        "category_name":  "⚡ Server \u0026 Tiến Trình Ngầm",
+        "icon":  "🚀",
+        "title":  "Khởi động Server ngầm không lo treo terminal",
+        "trigger_when":  "Khi cần chạy dev server (như npm run dev, node dist/index.js, vite, python app.py) mà không muốn terminal của Claude Code bị chiếm dụng hoặc bị dừng khi tắt session.",
+        "purpose":  "Khởi chạy một lệnh server dưới dạng daemon tiến trình ngầm, lưu PID và ghi log, giúp terminal rảnh tay để tiếp tục gõ lệnh khác.",
+        "tool_command":  "daemon-mgr start \"{command}\"",
+        "default_params":  {
+                               "port":  "3900",
+                               "command":  "node dist/index.js",
+                               "status":  "Server chưa chạy hoặc cần chạy ngầm độc lập",
+                               "requirement":  "Chạy lệnh ngầm dưới dạng daemon, giải phóng terminal",
+                               "error":  "Terminal bị treo chiếm dụng nếu chạy thông thường",
+                               "purpose":  "Server chạy bền bỉ liên tục và theo dõi log dễ dàng"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Hãy dùng daemon-mgr chạy ngầm lệnh \"{command}\", sau đó kiểm tra xem cổng {port} đã lắng nghe thành công hay chưa và báo lại cho tôi.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Launch command \"{command}\" in background daemon mode using daemon-mgr, verify port {port} is active, and return status.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status}\nCOMMAND / LỆNH: {command} (Target Port: {port})\nREQUIREMENT / YÊU CẦU: {requirement}\nSpawn \"{command}\" as a detached background daemon with daemon-mgr, check port {port} readiness, and stream startup logs.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "daemon",
+                     "chạy ngầm",
+                     "start server",
+                     "background",
+                     "không treo terminal",
+                     "port",
+                     "node server"
+                 ]
+    },
+    {
+        "id":  "daemon-port-check",
+        "category":  "daemon",
+        "category_name":  "⚡ Server \u0026 Tiến Trình Ngầm",
+        "icon":  "🔌",
+        "title":  "Kiểm tra cổng mạng xung đột \u0026 Quản lý tiến trình",
+        "trigger_when":  "Khi gặp lỗi \u0027EADDRINUSE: address already in use\u0027 trên bất kỳ cổng mạng nào (3900, 7878, 3000, 5173, 8080...).",
+        "purpose":  "Liệt kê danh sách các tiến trình ngầm đang chạy, quét các cổng mạng thông dụng và giải phóng cổng (kill PID) nếu bị xung đột.",
+        "tool_command":  "daemon-mgr list",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Cổng mạng bị chiếm dụng hoặc xung đột EADDRINUSE",
+                               "requirement":  "Quét danh sách tiến trình, giải phóng cổng bị kẹt",
+                               "error":  "Lỗi EADDRINUSE: address already in use",
+                               "purpose":  "Dọn sạch cổng để server mới khởi động trơn tru"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: Cổng {port} đang bị xung đột hoặc đã có tiến trình khác chiếm dụng.\nMô tả lỗi: {error}.\nYêu cầu: {requirement}. Hãy dùng daemon-mgr kiểm tra danh sách cổng đang mở, nếu cổng {port} bị kẹt thì hãy giải phóng cổng giúp tôi.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: Port {port} is occupied or conflicting with EADDRINUSE.\nError: {error}.\nRequirement: {requirement}. Use daemon-mgr to list active ports, terminate lingering process on port {port}, and free the socket.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: Port {port} collision (EADDRINUSE)\nERROR / LỖI: {error}\nREQUIREMENT / YÊU CẦU: {requirement}\nCheck open ports via daemon-mgr list, identify conflicting PID on port {port}, and release it safely.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "eaddrinuse",
+                     "xung đột cổng",
+                     "port kẹt",
+                     "check port",
+                     "kill process",
+                     "daemon-mgr"
+                 ]
+    },
+    {
+        "id":  "visual-diff-regression",
+        "category":  "visual",
+        "category_name":  "🖼️ So Sánh Thị Giác \u0026 Regression",
+        "icon":  "⚖️",
+        "title":  "So sánh ảnh màn hình UI trước và sau khi sửa lỗi",
+        "trigger_when":  "Sau khi sửa code CSS, HTML, nâng cấp component hoặc refactor giao diện trong bất kỳ dự án web nào, cần xác nhận giao diện không bị lệch pixel, không bị vỡ bố cục.",
+        "purpose":  "So sánh 2 ảnh chụp màn hình UI (trước vs sau), tính toán tỷ lệ chênh lệch phần trăm kích thước khung hình và cảnh báo nếu có biến dạng bố cục.",
+        "tool_command":  "visual-diff \"{before_img}\" \"{after_img}\"",
+        "default_params":  {
+                               "before_img":  "before.png",
+                               "after_img":  "after.png",
+                               "port":  "3900",
+                               "status":  "Vừa thực hiện chỉnh sửa code giao diện",
+                               "requirement":  "So sánh ảnh chụp màn hình trước và sau khi sửa",
+                               "error":  "Lo ngại vỡ layout hoặc lệch pixel giao diện",
+                               "purpose":  "Đảm bảo tính hồi quy UI đạt độ chuẩn xác cao"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Hãy dùng visual-diff so sánh ảnh trước ({before_img}) và ảnh sau ({after_img}) để kiểm tra xem bố cục giao diện có bị vỡ hay thay đổi bất thường không.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Compare baseline screenshot ({before_img}) against updated screenshot ({after_img}) with visual-diff to ensure zero regression.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status}\nBEFORE/AFTER IMAGES: {before_img} vs {after_img}\nREQUIREMENT / YÊU CẦU: {requirement}\nRun visual regression diff between baseline and new UI capture, reporting layout stability.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "visual diff",
+                     "so sánh ảnh",
+                     "vỡ layout",
+                     "regression test",
+                     "kiểm tra thị giác",
+                     "lệch giao diện"
+                 ]
+    },
+    {
+        "id":  "knowledge-save-lesson",
+        "category":  "knowledge",
+        "category_name":  "📚 Kho Tri Thức \u0026 Bộ Nhớ Dài Hạn",
+        "icon":  "💾",
+        "title":  "Lưu lại bài học sửa bug vào bộ nhớ dài hạn vĩnh viễn",
+        "trigger_when":  "Sau khi giải quyết xong bất kỳ bug khó, lỗi kiến trúc hoặc bài học kinh nghiệm nào trên bất kỳ dự án nào, muốn Claude Code ghi nhớ vĩnh viễn cho mọi dự án sau.",
+        "purpose":  "Lưu bài học kèm cách khắc phục vào kho tri thức toàn cầu %USERPROFILE%\\.claude\\knowledge\\lessons.jsonl để tự động tái sử dụng.",
+        "tool_command":  "knowledge-hub save \"{bug_title}\" \"{solution}\"",
+        "default_params":  {
+                               "bug_title":  "Tên lỗi hoặc vấn đề kỹ thuật vừa xử lý",
+                               "solution":  "Cách khắc phục chi tiết và các lưu ý cốt lõi",
+                               "port":  "3900",
+                               "status":  "Vừa giải quyết xong một lỗi phức tạp trong dự án",
+                               "requirement":  "Lưu bài học kinh nghiệm vào bộ nhớ dài hạn toàn cầu",
+                               "error":  "Tránh lặp lại lỗi này trong tương lai",
+                               "purpose":  "Tích lũy kho tri thức tự động tái sử dụng cho mọi dự án"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Hãy dùng knowledge-hub lưu lại bài học: Lỗi \"{bug_title}\" và cách khắc phục: \"{solution}\" để ghi nhớ và tái sử dụng cho các dự án sau.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Persist engineering lesson: Issue \"{bug_title}\" with Solution \"{solution}\" into global knowledge-hub.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status}\nLESSON TOPIC: \"{bug_title}\" -\u003e \"{solution}\"\nREQUIREMENT / YÊU CẦU: {requirement}\nSave verified architectural resolution to global lessons store.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "lưu bài học",
+                     "ghi nhớ",
+                     "bộ nhớ dài hạn",
+                     "knowledge",
+                     "kinh nghiệm",
+                     "solution bank"
+                 ]
+    },
+    {
+        "id":  "coding-refactor-safe",
+        "category":  "coding",
+        "category_name":  "🚀 Lập Trình Cặp \u0026 Code Refactor",
+        "icon":  "✨",
+        "title":  "Refactor mã nguồn an toàn \u0026 Giữ nguyên bình luận",
+        "trigger_when":  "Khi muốn làm sạch code trong bất kỳ dự án nào (TypeScript, JavaScript, Python, C++, Go...), code dài dòng hoặc trùng lặp mà không làm mất comment của tác giả.",
+        "purpose":  "Viết lại code sạch sẽ, tuân thủ nguyên tắc YAGNI, tối ưu hiệu năng, bảo toàn nguyên vẹn mọi comments và docstrings của tác giả.",
+        "default_params":  {
+                               "file":  "src/App.tsx",
+                               "port":  "3900",
+                               "status":  "Mã nguồn đang cồng kềnh, cần tối ưu làm gọn",
+                               "requirement":  "Refactor logic, tuân thủ YAGNI, bảo toàn 100% comments",
+                               "error":  "Code dài dòng, dễ phát sinh lỗi tiềm ẩn",
+                               "purpose":  "Mã nguồn ngắn gọn, tối ưu hiệu năng và dễ bảo trì"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại file {file}.\nYêu cầu: {requirement}. Hãy kiểm tra và refactor file {file}. Yêu cầu: tối ưu hóa logic, giữ nguyên toàn bộ bình luận hiện có, không thêm abstraction dư thừa, đảm bảo mã nguồn chạy ổn định và ngắn gọn nhất.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} for {file}.\nRequirement: {requirement}. Refactor {file} adhering to YAGNI: preserve all existing comments/docstrings, eliminate boilerplate, and maintain runtime stability.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status} ({file})\nREQUIREMENT / YÊU CẦU: {requirement}\nRefactor target file with minimal diff, keeping all comments intact and avoiding unnecessary abstractions.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "refactor",
+                     "tối ưu code",
+                     "clean code",
+                     "giữ bình luận",
+                     "gọn gàng",
+                     "yagni"
+                 ]
+    },
+    {
+        "id":  "project-health-review",
+        "category":  "coding",
+        "category_name":  "🚀 Lập Trình Cặp \u0026 Code Refactor",
+        "icon":  "🩺",
+        "title":  "Rà soát sức khỏe dự án \u0026 đề xuất cải thiện",
+        "trigger_when":  "Khi mới nhận một dự án, hoặc muốn kiểm tra cấu trúc thư mục, phụ thuộc, test và tài liệu của dự án mình sở hữu.",
+        "purpose":  "Đánh giá nhanh cấu trúc, phụ thuộc lỗi thời, thiếu test/tài liệu và đưa ra danh sách cải thiện ưu tiên.",
+        "default_params":  {
+                               "dir":  ".",
+                               "status":  "Dự án lâu chưa được rà soát",
+                               "requirement":  "Đánh giá cấu trúc, phụ thuộc, test, tài liệu",
+                               "purpose":  "Có danh sách việc cần làm theo mức ưu tiên"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại thư mục {dir}.\nYêu cầu: {requirement}. Hãy đọc cấu trúc dự án, package/phụ thuộc, test và tài liệu, rồi liệt kê điểm yếu và việc nên làm theo mức ưu tiên (không sửa code khi chưa được đồng ý).\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} in {dir}.\nRequirement: {requirement}. Review project layout, dependencies, tests and docs, then list weaknesses and prioritized actions (do not change code until I approve).\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status} ({dir})\nREQUIREMENT / YÊU CẦU: {requirement}\nReview layout, dependencies, tests, docs; report prioritized actions without editing code first.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "review",
+                     "sức khỏe dự án",
+                     "cấu trúc",
+                     "phụ thuộc",
+                     "test",
+                     "tài liệu"
+                 ]
+    },
+    {
+        "id":  "pkg-build-exe",
+        "category":  "packaging",
+        "category_name":  "📦 Đóng Gói \u0026 Sao Lưu Bản Dựng",
+        "icon":  "📦",
+        "title":  "Đóng gói ứng dụng Node.js thành file .exe",
+        "trigger_when":  "Khi bạn muốn gửi ứng dụng Node.js của mình cho người khác chạy mà không cần cài Node.js.",
+        "purpose":  "Đóng gói mã nguồn của chính bạn thành một file .exe chạy độc lập trên Windows.",
+        "default_params":  {
+                               "entry":  "src/index.js",
+                               "out_file":  "app.exe",
+                               "status":  "Ứng dụng Node.js đã hoàn thiện",
+                               "requirement":  "Đóng gói thành .exe chạy độc lập",
+                               "purpose":  "Gửi cho người dùng chạy ngay không cần cài Node.js"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Hãy dùng pkg-backup exe \"{entry}\" \"{out_file}\" để đóng gói, kiểm tra file .exe tạo ra chạy được và báo kích thước.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Use pkg-backup exe \"{entry}\" \"{out_file}\" to package the app, verify the generated .exe runs and report its size.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "STATUS / TÌNH TRẠNG: {status}\nREQUIREMENT / YÊU CẦU: {requirement}\nRun pkg-backup exe \"{entry}\" \"{out_file}\", verify the .exe runs.\nGOAL / MỤC ĐÍCH: {purpose}\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tool_command":  "pkg-backup exe \"{entry}\" \"{out_file}\"",
+        "tags":  [
+                     "exe",
+                     "đóng gói",
+                     "build",
+                     "nodejs",
+                     "pkg",
+                     "phát hành"
+                 ]
+    },
+    {
+        "id":  "ui-perf-check",
+        "category":  "browser",
+        "category_name":  "🌐 Trình Duyệt \u0026 Bắt Bệnh UI",
+        "icon":  "⏱️",
+        "title":  "Đo tốc độ tải \u0026 hiệu năng trang web",
+        "trigger_when":  "Khi trang web chậm, tải lâu hoặc cuộn giật.",
+        "purpose":  "Đo thời gian tải, tìm tài nguyên nặng và đề xuất cách tối ưu.",
+        "tool_command":  "cdp-browse http://127.0.0.1:{port}",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Trang web tải chậm, cuộn giật",
+                               "requirement":  "Đo hiệu năng và đề xuất tối ưu",
+                               "error":  "Tải trang trên 5 giây",
+                               "purpose":  "Trang tải nhanh và mượt"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại cổng {port}.\nYêu cầu: {requirement}. Dùng cdp-browse mở http://127.0.0.1:{port}, đo thời gian tải, liệt kê tài nguyên nặng nhất và đề xuất cách tối ưu.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} on port {port}.\nRequirement: {requirement}. Use cdp-browse on http://127.0.0.1:{port}, measure load time, list the heaviest resources and suggest optimizations.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status} tại cổng {port}.\nYêu cầu: {requirement}. Dùng cdp-browse mở http://127.0.0.1:{port}, đo thời gian tải, liệt kê tài nguyên nặng nhất và đề xuất cách tối ưu.\nMục đích mong muốn: {purpose}.\nStatus: {status} on port {port}.\nRequirement: {requirement}. Use cdp-browse on http://127.0.0.1:{port}, measure load time, list the heaviest resources and suggest optimizations.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "hiệu năng",
+                     "tải chậm",
+                     "tối ưu",
+                     "lighthouse"
+                 ]
+    },
+    {
+        "id":  "daemon-log-watch",
+        "category":  "daemon",
+        "category_name":  "⚡ Server \u0026 Tiến Trình Ngầm",
+        "icon":  "📜",
+        "title":  "Xem log server đang chạy ngầm",
+        "trigger_when":  "Khi server chạy ngầm nhưng cần biết nó đang báo lỗi gì.",
+        "purpose":  "Liệt kê tiến trình ngầm và đọc log gần nhất để tìm lỗi.",
+        "tool_command":  "daemon-mgr list",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Server chạy ngầm nhưng không phản hồi",
+                               "requirement":  "Đọc log và tìm lỗi",
+                               "error":  "Không rõ server báo lỗi gì",
+                               "purpose":  "Biết nguyên nhân và cách sửa"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại cổng {port}.\nYêu cầu: {requirement}. Dùng daemon-mgr list để xem các tiến trình đang chạy, đọc log gần nhất của server và chỉ ra dòng lỗi đáng chú ý.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} on port {port}.\nRequirement: {requirement}. Use daemon-mgr list to see running processes, read the latest server log and point out notable errors.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status} tại cổng {port}.\nYêu cầu: {requirement}. Dùng daemon-mgr list để xem các tiến trình đang chạy, đọc log gần nhất của server và chỉ ra dòng lỗi đáng chú ý.\nMục đích mong muốn: {purpose}.\nStatus: {status} on port {port}.\nRequirement: {requirement}. Use daemon-mgr list to see running processes, read the latest server log and point out notable errors.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "log",
+                     "server",
+                     "daemon",
+                     "lỗi"
+                 ]
+    },
+    {
+        "id":  "daemon-stop-port",
+        "category":  "daemon",
+        "category_name":  "⚡ Server \u0026 Tiến Trình Ngầm",
+        "icon":  "🛑",
+        "title":  "Dừng tiến trình đang chiếm một cổng",
+        "trigger_when":  "Khi khởi động server báo cổng đã bị chiếm.",
+        "purpose":  "Tìm đúng tiến trình đang giữ cổng của dự án mình và dừng nó an toàn.",
+        "tool_command":  "daemon-mgr kill {port}",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Cổng đang bị chiếm",
+                               "requirement":  "Tìm và dừng tiến trình chiếm cổng",
+                               "error":  "EADDRINUSE",
+                               "purpose":  "Khởi động lại server bình thường"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Tìm tiến trình đang chiếm cổng {port}, cho tôi xem tên và PID, chỉ dừng khi tôi xác nhận và đó là tiến trình của dự án này.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Find the process holding port {port}, show its name and PID, and stop it only after I confirm it belongs to this project.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Tìm tiến trình đang chiếm cổng {port}, cho tôi xem tên và PID, chỉ dừng khi tôi xác nhận và đó là tiến trình của dự án này.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Find the process holding port {port}, show its name and PID, and stop it only after I confirm it belongs to this project.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "cổng",
+                     "kill",
+                     "EADDRINUSE",
+                     "tiến trình"
+                 ]
+    },
+    {
+        "id":  "pkg-zip-backup",
+        "category":  "packaging",
+        "category_name":  "📦 Đóng Gói \u0026 Sao Lưu Bản Dựng",
+        "icon":  "🗜️",
+        "title":  "Sao lưu dự án thành file .zip",
+        "trigger_when":  "Trước khi sửa lớn hoặc cuối ngày, muốn có bản sao lưu.",
+        "purpose":  "Nén thư mục dự án (bỏ node_modules, .git) thành file .zip có ghi ngày.",
+        "tool_command":  "",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Sắp sửa lớn, cần bản dự phòng",
+                               "requirement":  "Nén dự án thành .zip có ngày",
+                               "error":  "",
+                               "purpose":  "Có bản sao lưu để quay lại",
+                               "dir":  "."
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Nén thư mục {dir} thành file .zip có ghi ngày trong tên, bỏ qua node_modules và .git, rồi báo kích thước và đường dẫn.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Zip folder {dir} with the date in the file name, skipping node_modules and .git, then report size and path.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Nén thư mục {dir} thành file .zip có ghi ngày trong tên, bỏ qua node_modules và .git, rồi báo kích thước và đường dẫn.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Zip folder {dir} with the date in the file name, skipping node_modules and .git, then report size and path.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "sao lưu",
+                     "zip",
+                     "backup",
+                     "dự phòng"
+                 ]
+    },
+    {
+        "id":  "visual-responsive",
+        "category":  "visual",
+        "category_name":  "🖼️ So Sánh Thị Giác \u0026 Regression",
+        "icon":  "📱",
+        "title":  "Kiểm tra giao diện trên màn hình nhỏ",
+        "trigger_when":  "Khi muốn chắc giao diện không vỡ trên điện thoại hoặc cửa sổ hẹp.",
+        "purpose":  "Chụp ảnh ở nhiều độ rộng và chỉ ra chỗ bị tràn hoặc đè.",
+        "tool_command":  "cdp-browse http://127.0.0.1:{port}",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Giao diện có thể vỡ trên màn hình nhỏ",
+                               "requirement":  "Chụp 3 độ rộng và so sánh",
+                               "error":  "Phần tử bị tràn hoặc đè nhau",
+                               "purpose":  "Giao diện đẹp trên mọi kích thước"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại cổng {port}.\nYêu cầu: {requirement}. Chụp giao diện ở độ rộng 360, 768 và 1280 rồi chỉ ra phần bị tràn, đè hoặc cắt chữ.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} on port {port}.\nRequirement: {requirement}. Capture the UI at widths 360, 768 and 1280 and point out overflow, overlap or clipped text.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status} tại cổng {port}.\nYêu cầu: {requirement}. Chụp giao diện ở độ rộng 360, 768 và 1280 rồi chỉ ra phần bị tràn, đè hoặc cắt chữ.\nMục đích mong muốn: {purpose}.\nStatus: {status} on port {port}.\nRequirement: {requirement}. Capture the UI at widths 360, 768 and 1280 and point out overflow, overlap or clipped text.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "responsive",
+                     "mobile",
+                     "tràn",
+                     "đè"
+                 ]
+    },
+    {
+        "id":  "knowledge-search",
+        "category":  "knowledge",
+        "category_name":  "📚 Kho Tri Thức \u0026 Bộ Nhớ Dài Hạn",
+        "icon":  "🔎",
+        "title":  "Tra cứu bài học đã lưu trước đây",
+        "trigger_when":  "Khi gặp lỗi quen quen, muốn xem đã từng xử lý chưa.",
+        "purpose":  "Tìm trong kho tri thức các bài học liên quan trước khi sửa từ đầu.",
+        "tool_command":  "knowledge-hub search \"{keyword}\"",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Gặp lỗi có vẻ đã từng xử lý",
+                               "requirement":  "Tìm bài học cũ liên quan",
+                               "error":  "",
+                               "purpose":  "Không phải sửa lại từ đầu",
+                               "keyword":  "freeze"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Dùng knowledge-hub search với từ khóa \"{keyword}\", tóm tắt các bài học liên quan và áp dụng nếu phù hợp.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Run knowledge-hub search with keyword \"{keyword}\", summarize related lessons and apply them if relevant.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Dùng knowledge-hub search với từ khóa \"{keyword}\", tóm tắt các bài học liên quan và áp dụng nếu phù hợp.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Run knowledge-hub search with keyword \"{keyword}\", summarize related lessons and apply them if relevant.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "tra cứu",
+                     "bài học",
+                     "knowledge",
+                     "tìm kiếm"
+                 ]
+    },
+    {
+        "id":  "coding-write-tests",
+        "category":  "coding",
+        "category_name":  "🚀 Lập Trình Cặp \u0026 Code Refactor",
+        "icon":  "🧪",
+        "title":  "Viết test cho hàm hoặc module",
+        "trigger_when":  "Khi code chạy được nhưng chưa có test bảo vệ.",
+        "purpose":  "Viết test gọn, bao phủ trường hợp thường gặp và biên.",
+        "tool_command":  "",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Chưa có test",
+                               "requirement":  "Viết test cho các trường hợp chính",
+                               "error":  "",
+                               "purpose":  "Sửa code sau này không sợ hỏng",
+                               "file":  "src/App.tsx"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại file {file}.\nYêu cầu: {requirement}. Viết test cho {file}: các trường hợp thường gặp, biên và lỗi, dùng framework test đang có trong dự án, không sửa code gốc.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} in {file}.\nRequirement: {requirement}. Write tests for {file}: common, edge and error cases using the project\u0027s existing test framework, without changing the source.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status} tại file {file}.\nYêu cầu: {requirement}. Viết test cho {file}: các trường hợp thường gặp, biên và lỗi, dùng framework test đang có trong dự án, không sửa code gốc.\nMục đích mong muốn: {purpose}.\nStatus: {status} in {file}.\nRequirement: {requirement}. Write tests for {file}: common, edge and error cases using the project\u0027s existing test framework, without changing the source.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "test",
+                     "unit test",
+                     "kiểm thử",
+                     "coverage"
+                 ]
+    },
+    {
+        "id":  "coding-explain-code",
+        "category":  "coding",
+        "category_name":  "🚀 Lập Trình Cặp \u0026 Code Refactor",
+        "icon":  "💡",
+        "title":  "Giải thích một đoạn code khó hiểu",
+        "trigger_when":  "Khi đọc code của người khác hoặc code cũ mà không hiểu.",
+        "purpose":  "Giải thích từng bước bằng lời dễ hiểu, kèm ví dụ nhỏ.",
+        "tool_command":  "",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Đọc code cũ không hiểu",
+                               "requirement":  "Giải thích luồng chạy",
+                               "error":  "",
+                               "purpose":  "Hiểu để sửa an toàn",
+                               "file":  "src/App.tsx"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status} tại file {file}.\nYêu cầu: {requirement}. Giải thích file {file} từng bước bằng lời dễ hiểu, nêu luồng chạy chính và những chỗ dễ nhầm.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status} in {file}.\nRequirement: {requirement}. Explain {file} step by step in plain language, describe the main flow and the confusing parts.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status} tại file {file}.\nYêu cầu: {requirement}. Giải thích file {file} từng bước bằng lời dễ hiểu, nêu luồng chạy chính và những chỗ dễ nhầm.\nMục đích mong muốn: {purpose}.\nStatus: {status} in {file}.\nRequirement: {requirement}. Explain {file} step by step in plain language, describe the main flow and the confusing parts.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "giải thích",
+                     "đọc code",
+                     "học",
+                     "luồng chạy"
+                 ]
+    },
+    {
+        "id":  "coding-precommit-review",
+        "category":  "coding",
+        "category_name":  "🚀 Lập Trình Cặp \u0026 Code Refactor",
+        "icon":  "✅",
+        "title":  "Review thay đổi trước khi commit",
+        "trigger_when":  "Khi vừa sửa xong và muốn kiểm tra lại trước khi lưu.",
+        "purpose":  "Xem diff, tìm lỗi tiềm ẩn, sót debug và chỗ chưa nhất quán.",
+        "tool_command":  "",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Vừa sửa xong, chưa commit",
+                               "requirement":  "Review diff trước khi commit",
+                               "error":  "",
+                               "purpose":  "Commit sạch, ít lỗi"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Xem các thay đổi chưa commit, chỉ ra lỗi tiềm ẩn, code debug bị sót và chỗ chưa nhất quán; chưa commit giúp tôi.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Review uncommitted changes, point out potential bugs, leftover debug code and inconsistencies; do not commit for me.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Xem các thay đổi chưa commit, chỉ ra lỗi tiềm ẩn, code debug bị sót và chỗ chưa nhất quán; chưa commit giúp tôi.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Review uncommitted changes, point out potential bugs, leftover debug code and inconsistencies; do not commit for me.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "review",
+                     "diff",
+                     "commit",
+                     "kiểm tra"
+                 ]
+    }
+]

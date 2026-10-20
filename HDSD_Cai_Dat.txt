@@ -1,0 +1,39 @@
+﻿================================================================================
+   ⚡ HƯỚNG DẪN CÀI ĐẶT 1-CLICK: BỘ PROMPT HUB & SUPER TOOLS CHO CLAUDE CODE
+================================================================================
+
+1. CÁCH CÀI ĐẶT NHANH (CHO BẠN BÈ / MÁY MỚI):
+   - Giải nén toàn bộ thư mục này ra bất kỳ đâu trên máy tính (ổ C, D, E...).
+   - Nhấp đúp chuột (Double click) vào file:
+       👉 [ Cai-Dat-1-Click.cmd ]
+   - Chương trình sẽ tự động:
+       + Tạo thư mục %USERPROFILE%\.claude\tools\
+       + Sao chép toàn bộ 13 file công cụ (.cjs, .html, .json, .cmd, .md)
+       + Tự động thêm vào biến môi trường PATH để gõ lệnh từ mọi terminal
+       + Cấu hình CLAUDE.md và mở ngay giao diện Prompt Hub trên trình duyệt.
+
+2. CÁCH SỬ DỤNG:
+   - Cách 1: Gõ lệnh `prompt-hub` trong bất kỳ cửa sổ CMD, PowerShell hoặc Terminal nào.
+   - Cách 2: Mở file `Mo-Prompt-Hub.cmd` hoặc mở `%USERPROFILE%\.claude\tools\prompt-hub.html`.
+   - Chọn ngôn ngữ:
+       + 🇻🇳 Tiếng Việt: Đầy đủ, mạch lạc.
+       + ⚡ English: Tiết kiệm 40% Token khi chạy trên Claude Code.
+       + 🌐 Song Ngữ: Kèm cả 2 phiên bản.
+   - Bấm nút Copy tương ứng để dán vào Claude Code. Mọi prompt đều có sẵn 2 đợt hỏi xác nhận.
+
+3. DANH SÁCH 5 CÔNG CỤ TÍCH HỢP SẴN:
+   - cdp-browse <url>       : Kiểm tra lỗi đơ giao diện bằng Chrome DevTools Protocol & Chụp ảnh.
+   - daemon-mgr <lệnh>      : Chạy server ngầm (npm run dev, python...) không bao giờ lo treo terminal.
+   - pkg-backup exe <file.js> : Đóng gói ứng dụng Node.js thành file .exe chạy độc lập.
+   - visual-diff <img1> <img2>: So sánh 2 ảnh chụp UI trước và sau khi code để chống vỡ layout.
+   - knowledge-hub <lệnh>   : Lưu và tra cứu các bài học sửa bug vào bộ nhớ dài hạn vĩnh viễn.
+
+SIÊU CÔNG CỤ CLAUDE CODE (popup nổi, không chiếm con trỏ):
+   - Nhấn Alt+Z (mặc định) để mở / đóng. Nhấp đôi một prompt: tự dán vào vị trí con trỏ trước đó.
+   - Đổi phím tắt: nút 'Phím tắt' trong popup hoặc menu chuột phải ở icon khay hệ thống.
+   - Nút 🌈 đổi giao diện hồng (nhân vật nữ) / xanh (nhân vật nam); ô 'Hiệu ứng' bật tắt hiệu ứng chuột.
+   - Đóng cửa sổ chỉ thu nhỏ về khay; muốn tắt hẳn: chuột phải icon khay -> Thoát.
+   - Kiểm thử tự động: powershell -ExecutionPolicy Bypass -File Test-Tu-Dong.ps1
+
+Chúc bạn và đồng nghiệp làm việc thăng hoa cùng Claude Code!
+================================================================================

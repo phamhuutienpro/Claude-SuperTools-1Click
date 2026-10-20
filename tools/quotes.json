@@ -1,0 +1,402 @@
+[
+    {
+        "vi":  "Mỗi ngày tiến một bước nhỏ, cuối tháng bạn đã đi rất xa.",
+        "en":  "Take one small step each day and by month\u0027s end you will have gone far."
+    },
+    {
+        "vi":  "Lỗi chỉ là bài học đang mặc áo ngụy trang.",
+        "en":  "A bug is just a lesson in disguise."
+    },
+    {
+        "vi":  "Bắt đầu ngay bây giờ, hoàn hảo để sau.",
+        "en":  "Start now, perfect it later."
+    },
+    {
+        "vi":  "Người giỏi không phải người không vấp, mà là người đứng dậy nhanh.",
+        "en":  "The best are not those who never trip, but those who get up fast."
+    },
+    {
+        "vi":  "Code sạch hôm nay là món quà cho chính bạn ngày mai.",
+        "en":  "Clean code today is a gift to your future self."
+    },
+    {
+        "vi":  "Đừng so sánh chương một của bạn với chương mười của người khác.",
+        "en":  "Don\u0027t compare your chapter one to someone else\u0027s chapter ten."
+    },
+    {
+        "vi":  "Kiên trì là phép màu của người bình thường.",
+        "en":  "Persistence is the ordinary person\u0027s magic."
+    },
+    {
+        "vi":  "Một giấc ngủ ngon đôi khi sửa được nhiều lỗi hơn một giờ debug.",
+        "en":  "A good night\u0027s sleep sometimes fixes more bugs than an hour of debugging."
+    },
+    {
+        "vi":  "Hôm nay làm được một việc, ngày mai nhẹ đi một việc.",
+        "en":  "One thing done today is one thing less tomorrow."
+    },
+    {
+        "vi":  "Mọi chuyên gia đều từng là người mới bắt đầu.",
+        "en":  "Every expert was once a beginner."
+    },
+    {
+        "vi":  "Chậm mà chắc vẫn hơn nhanh mà phải làm lại.",
+        "en":  "Slow and steady beats fast and redo."
+    },
+    {
+        "vi":  "Tin vào bản thân, bạn đã đi được nửa đường.",
+        "en":  "Believe in yourself and you\u0027re halfway there."
+    },
+    {
+        "vi":  "Khó khăn chỉ là cách cuộc sống kiểm tra độ kiên nhẫn của bạn.",
+        "en":  "Hardship is how life tests your patience."
+    },
+    {
+        "vi":  "Làm việc thông minh, nghỉ ngơi đúng lúc.",
+        "en":  "Work smart, rest on time."
+    },
+    {
+        "vi":  "Một ý tưởng nhỏ cộng một hành động nhỏ bằng một thay đổi lớn.",
+        "en":  "A small idea plus a small action equals a big change."
+    },
+    {
+        "vi":  "Đừng chờ cảm hứng, hãy tạo ra nó bằng việc bắt tay vào làm.",
+        "en":  "Don\u0027t wait for inspiration; create it by starting."
+    },
+    {
+        "vi":  "Bạn mạnh mẽ hơn những gì bạn nghĩ.",
+        "en":  "You are stronger than you think."
+    },
+    {
+        "vi":  "Thất bại là bước đệm, không phải điểm dừng.",
+        "en":  "Failure is a stepping stone, not a stop sign."
+    },
+    {
+        "vi":  "Hãy tử tế với bản thân như cách bạn tử tế với bạn bè.",
+        "en":  "Be as kind to yourself as you are to your friends."
+    },
+    {
+        "vi":  "Mỗi dòng code là một viên gạch của giấc mơ.",
+        "en":  "Every line of code is a brick in your dream."
+    },
+    {
+        "vi":  "Đơn giản là đỉnh cao của tinh tế.",
+        "en":  "Simplicity is the ultimate sophistication."
+    },
+    {
+        "vi":  "Việc khó đến đâu, chia nhỏ ra cũng làm được.",
+        "en":  "No task is too hard once you break it down."
+    },
+    {
+        "vi":  "Nụ cười của bạn là bản vá tốt nhất cho một ngày tệ.",
+        "en":  "Your smile is the best patch for a bad day."
+    },
+    {
+        "vi":  "Học điều mới mỗi ngày, dù chỉ một dòng.",
+        "en":  "Learn something new every day, even if it\u0027s one line."
+    },
+    {
+        "vi":  "Biết đủ để bắt đầu, học thêm trong lúc đi.",
+        "en":  "Know enough to begin, learn more along the way."
+    },
+    {
+        "vi":  "Đừng sợ đi chậm, chỉ sợ đứng yên.",
+        "en":  "Don\u0027t fear going slowly; fear standing still."
+    },
+    {
+        "vi":  "Sự tập trung là siêu năng lực của thời đại này.",
+        "en":  "Focus is the superpower of our age."
+    },
+    {
+        "vi":  "Sửa xong một lỗi khó là cảm giác không gì thay thế được.",
+        "en":  "Fixing a hard bug is a feeling nothing replaces."
+    },
+    {
+        "vi":  "Hôm nay cố gắng, ngày mai tự hào.",
+        "en":  "Try today, be proud tomorrow."
+    },
+    {
+        "vi":  "Thành công là tổng của những nỗ lực nhỏ lặp lại mỗi ngày.",
+        "en":  "Success is the sum of small efforts repeated daily."
+    },
+    {
+        "vi":  "Giữ bình tĩnh và tiếp tục commit.",
+        "en":  "Keep calm and keep committing."
+    },
+    {
+        "vi":  "Điều bạn làm hôm nay quyết định điều bạn có ngày mai.",
+        "en":  "What you do today decides what you have tomorrow."
+    },
+    {
+        "vi":  "Không có đường tắt đến nơi đáng đến.",
+        "en":  "There is no shortcut to anywhere worth going."
+    },
+    {
+        "vi":  "Hãy là phiên bản tốt hơn của chính bạn hôm qua.",
+        "en":  "Be a better version of yourself than yesterday."
+    },
+    {
+        "vi":  "Một cái nhìn mới thường giải được bài toán cũ.",
+        "en":  "A fresh look often solves an old problem."
+    },
+    {
+        "vi":  "Cà phê đã sẵn sàng, bạn cũng vậy.",
+        "en":  "The coffee is ready, and so are you."
+    },
+    {
+        "vi":  "Đặt mục tiêu nhỏ, ăn mừng chiến thắng nhỏ.",
+        "en":  "Set small goals and celebrate small wins."
+    },
+    {
+        "vi":  "Bạn không cần hoàn hảo, chỉ cần bắt đầu.",
+        "en":  "You don\u0027t need to be perfect, just begin."
+    },
+    {
+        "vi":  "Sự bền bỉ thắng tài năng khi tài năng lười biếng.",
+        "en":  "Perseverance beats talent when talent is lazy."
+    },
+    {
+        "vi":  "Hãy để kết quả của bạn lên tiếng thay lời nói.",
+        "en":  "Let your results do the talking."
+    },
+    {
+        "vi":  "Lỗi đỏ hôm nay là kinh nghiệm xanh ngày mai.",
+        "en":  "Today\u0027s red error is tomorrow\u0027s green experience."
+    },
+    {
+        "vi":  "Mỗi buổi sáng là một trang trắng mới.",
+        "en":  "Every morning is a fresh blank page."
+    },
+    {
+        "vi":  "Dám thử là đã thắng một nửa.",
+        "en":  "Daring to try is half the victory."
+    },
+    {
+        "vi":  "Hít thở sâu, vấn đề sẽ nhỏ lại.",
+        "en":  "Breathe deeply and the problem shrinks."
+    },
+    {
+        "vi":  "Giúp người khác tiến bộ cũng là cách bạn tiến bộ.",
+        "en":  "Helping others grow is how you grow too."
+    },
+    {
+        "vi":  "Kỷ luật là cây cầu nối mục tiêu với thành tựu.",
+        "en":  "Discipline is the bridge between goals and achievements."
+    },
+    {
+        "vi":  "Đam mê dẫn đường, kiên trì mở lối.",
+        "en":  "Passion leads the way, persistence opens the path."
+    },
+    {
+        "vi":  "Không ai viết được chương trình hoàn hảo ngay lần đầu.",
+        "en":  "No one writes the perfect program on the first try."
+    },
+    {
+        "vi":  "Một việc xong còn hơn mười việc dang dở.",
+        "en":  "One finished task beats ten half-done ones."
+    },
+    {
+        "vi":  "Hãy biết ơn những gì đã có và tiếp tục xây thêm.",
+        "en":  "Be grateful for what you have and keep building."
+    },
+    {
+        "vi":  "Đừng bỏ cuộc khi bạn đang ở gần đích nhất.",
+        "en":  "Don\u0027t quit when you\u0027re closest to the finish."
+    },
+    {
+        "vi":  "Trí tuệ lớn lên mỗi khi bạn dám hỏi.",
+        "en":  "Wisdom grows every time you dare to ask."
+    },
+    {
+        "vi":  "Làm điều bạn sợ, nỗi sợ sẽ nhỏ lại.",
+        "en":  "Do what you fear and the fear shrinks."
+    },
+    {
+        "vi":  "Tiến bộ nhỏ vẫn là tiến bộ.",
+        "en":  "Small progress is still progress."
+    },
+    {
+        "vi":  "Đọc lỗi cẩn thận, nó thường đã nói ra đáp án.",
+        "en":  "Read the error carefully; it often tells you the answer."
+    },
+    {
+        "vi":  "Mệt thì nghỉ, đừng bỏ.",
+        "en":  "Rest if you\u0027re tired, but don\u0027t quit."
+    },
+    {
+        "vi":  "Mỗi thử thách là một cơ hội để lớn lên.",
+        "en":  "Every challenge is a chance to grow."
+    },
+    {
+        "vi":  "Làm điều đúng, ngay cả khi không ai nhìn thấy.",
+        "en":  "Do the right thing even when no one is watching."
+    },
+    {
+        "vi":  "Sáng tạo bắt đầu khi bạn thôi sợ sai.",
+        "en":  "Creativity begins when you stop fearing mistakes."
+    },
+    {
+        "vi":  "Hôm nay bạn làm tốt hơn bạn nghĩ.",
+        "en":  "You did better today than you think."
+    },
+    {
+        "vi":  "Mục tiêu lớn được xây từ những ngày bình thường.",
+        "en":  "Big goals are built from ordinary days."
+    },
+    {
+        "vi":  "Hãy chọn tiến lên thay vì lùi lại vì sợ.",
+        "en":  "Choose forward over backward out of fear."
+    },
+    {
+        "vi":  "Nghỉ giải lao năm phút đôi khi là bước nhanh nhất.",
+        "en":  "A five-minute break is sometimes the fastest step."
+    },
+    {
+        "vi":  "Nghệ thuật của lập trình là biến phức tạp thành đơn giản.",
+        "en":  "The art of programming is turning complex into simple."
+    },
+    {
+        "vi":  "Bạn là tác giả của câu chuyện của chính mình.",
+        "en":  "You are the author of your own story."
+    },
+    {
+        "vi":  "Sai lầm đầu tiên là trả học phí cho lần thành công.",
+        "en":  "The first mistake is tuition for your success."
+    },
+    {
+        "vi":  "Đừng đếm ngày, hãy làm cho mỗi ngày đáng giá.",
+        "en":  "Don\u0027t count the days; make each day count."
+    },
+    {
+        "vi":  "Tập trung vào giải pháp, không ở lại với vấn đề.",
+        "en":  "Focus on the solution, not on dwelling in the problem."
+    },
+    {
+        "vi":  "Mọi hành trình dài đều bắt đầu từ một cú nhấp chuột.",
+        "en":  "Every long journey starts with a single click."
+    },
+    {
+        "vi":  "Hãy cho mình quyền chưa biết và quyền học.",
+        "en":  "Give yourself permission not to know yet, and to learn."
+    },
+    {
+        "vi":  "Một chút kiên nhẫn đáng giá hơn một giờ vội vã.",
+        "en":  "A little patience is worth more than an hour of rushing."
+    },
+    {
+        "vi":  "Hạnh phúc nằm ở việc làm điều mình yêu và yêu điều mình làm.",
+        "en":  "Happiness is doing what you love and loving what you do."
+    },
+    {
+        "vi":  "Biến hôm nay thành ngày bạn tự hào.",
+        "en":  "Make today a day you\u0027re proud of."
+    },
+    {
+        "vi":  "Người thắng là người thử thêm một lần nữa.",
+        "en":  "The winner is the one who tries one more time."
+    },
+    {
+        "vi":  "Cẩn thận từng chi tiết nhỏ, kết quả sẽ lớn.",
+        "en":  "Care for the small details and the results will be big."
+    },
+    {
+        "vi":  "Sự rõ ràng của suy nghĩ tạo nên sự rõ ràng của code.",
+        "en":  "Clear thinking makes clear code."
+    },
+    {
+        "vi":  "Cứ đi, đường sẽ hiện ra dưới chân bạn.",
+        "en":  "Keep walking and the path will appear beneath your feet."
+    },
+    {
+        "vi":  "Mọi ngày đều có thể là ngày tuyệt vời nếu bạn muốn.",
+        "en":  "Every day can be a great day if you choose."
+    },
+    {
+        "vi":  "Đừng để một lỗi nhỏ làm hỏng cả ngày của bạn.",
+        "en":  "Don\u0027t let one small bug ruin your whole day."
+    },
+    {
+        "vi":  "Học từ người đi trước, đi theo cách của riêng mình.",
+        "en":  "Learn from those before you, walk your own way."
+    },
+    {
+        "vi":  "Năng lượng tích cực lan tỏa nhanh hơn bạn tưởng.",
+        "en":  "Positive energy spreads faster than you think."
+    },
+    {
+        "vi":  "Bạn đã đi đến đây, vậy thì hãy đi tiếp.",
+        "en":  "You\u0027ve come this far, so keep going."
+    },
+    {
+        "vi":  "Một cuộc trò chuyện tử tế có thể thay đổi cả tuần của ai đó.",
+        "en":  "One kind conversation can change someone\u0027s week."
+    },
+    {
+        "vi":  "Hãy xây thói quen tốt, thói quen sẽ xây bạn.",
+        "en":  "Build good habits and they will build you."
+    },
+    {
+        "vi":  "Cố gắng hết mình rồi buông nhẹ nhàng.",
+        "en":  "Give your all, then let go gently."
+    },
+    {
+        "vi":  "Làm từng việc một, và làm cho tới nơi tới chốn.",
+        "en":  "Do one thing at a time, and do it well."
+    },
+    {
+        "vi":  "Điều tuyệt vời bắt đầu ở nơi bạn dám bước ra khỏi vùng an toàn.",
+        "en":  "Great things start where you dare leave your comfort zone."
+    },
+    {
+        "vi":  "Phụ nữ mạnh mẽ không chờ ai ban cho cơ hội, họ tự tạo ra.",
+        "en":  "Strong women don\u0027t wait for opportunity; they create it."
+    },
+    {
+        "vi":  "Chúc mừng 20/10: bạn rạng rỡ nhất khi sống đúng với chính mình.",
+        "en":  "Happy Women\u0027s Day: you shine brightest when you are yourself."
+    },
+    {
+        "vi":  "Mỗi người phụ nữ là một bông hoa theo cách riêng của mình.",
+        "en":  "Every woman is a flower in her own way."
+    },
+    {
+        "vi":  "Dịu dàng không phải là yếu đuối, đó là sức mạnh lặng lẽ.",
+        "en":  "Gentleness is not weakness; it is quiet strength."
+    },
+    {
+        "vi":  "Cảm ơn những người phụ nữ đã thắp sáng cuộc sống quanh ta.",
+        "en":  "Thank you to the women who light up the lives around us."
+    },
+    {
+        "vi":  "Phụ nữ giỏi giang vì họ không ngừng yêu thương và không ngừng cố gắng.",
+        "en":  "Women are remarkable because they never stop caring and never stop trying."
+    },
+    {
+        "vi":  "Hôm nay là ngày của bạn, hãy tự thưởng cho mình một nụ cười.",
+        "en":  "Today is your day; reward yourself with a smile."
+    },
+    {
+        "vi":  "Tự tin là món trang sức đẹp nhất của người phụ nữ.",
+        "en":  "Confidence is a woman\u0027s most beautiful jewel."
+    },
+    {
+        "vi":  "Cuối cùng, điều quan trọng là bạn đã không bỏ cuộc.",
+        "en":  "In the end, what matters is that you didn\u0027t give up."
+    },
+    {
+        "vi":  "Hãy để mỗi lần bấm Alt+Z là một lần bạn nhớ mình đang làm rất tốt.",
+        "en":  "Let every Alt+Z remind you that you\u0027re doing great."
+    },
+    {
+        "vi":  "Bạn xứng đáng với những điều tốt đẹp bạn đang theo đuổi.",
+        "en":  "You deserve the good things you are chasing."
+    },
+    {
+        "vi":  "Đừng quên uống nước và đứng dậy vươn vai nhé.",
+        "en":  "Don\u0027t forget to drink water and stretch."
+    },
+    {
+        "vi":  "Kiên nhẫn với quá trình, tin tưởng vào kết quả.",
+        "en":  "Be patient with the process and trust the outcome."
+    }
+]
