@@ -1,2 +1,2 @@
 @echo off
-node "%~dp0repo-store.cjs" %*
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0repo-store.ps1" %*

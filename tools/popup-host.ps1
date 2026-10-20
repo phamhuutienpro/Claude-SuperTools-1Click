@@ -365,13 +365,27 @@ function Show-Reminder([string]$msg) {
 }
 
 # ---------- tu cap nhat nen ----------
+function Get-UpdateState {
+    $f = Join-Path $env:LOCALAPPDATA 'PromptSpotlight\update-state.json'
+    $s = @{ autoUpdate = $true; pinned = '' }
+    if (Test-Path $f) { try { $o = Get-Content -Raw -Encoding UTF8 $f | ConvertFrom-Json; if ($null -ne $o.autoUpdate) { $s.autoUpdate = [bool]$o.autoUpdate }; if ($o.pinned) { $s.pinned = [string]$o.pinned } } catch {} }
+    $s
+}
+function Set-UpdateState($s) {
+    $d = Join-Path $env:LOCALAPPDATA 'PromptSpotlight'; if (-not (Test-Path $d)) { New-Item -ItemType Directory $d -Force | Out-Null }
+    [IO.File]::WriteAllText((Join-Path $d 'update-state.json'), (ConvertTo-Json $s), (New-Object Text.UTF8Encoding $false))
+}
+function Open-VersionManager {
+    $vm = Join-Path $script:dir 'version-manager.ps1'
+    if (Test-Path $vm) { Start-Process powershell.exe -ArgumentList '-NoProfile', '-STA', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', $vm }
+}
 function Get-AppVersion { $f = Join-Path $script:dir 'VERSION'; if (Test-Path $f) { (Get-Content $f -Raw).Trim() } else { '?' } }
 function Start-Update([bool]$force = $false) {
     $up = Join-Path $script:dir 'auto-update.ps1'
     if (-not (Test-Path $up)) { return }
     $installed = Join-Path $env:USERPROFILE '.claude\tools'
     if (-not $force -and ($script:dir.TrimEnd('\') -ine $installed.TrimEnd('\'))) { return }
-    if (-not $force -and -not $script:S.autoUpdate) { return }
+    if (-not $force -and -not (Get-UpdateState).autoUpdate) { return }
     $a = @('-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', $up)
     if ($force) { $a += '-Force' }
     Start-Process -FilePath 'powershell.exe' -ArgumentList $a -WindowStyle Hidden
@@ -452,12 +466,13 @@ function Build-Wpf {
       </ListBox>
       <Border Grid.Row="6" CornerRadius="0,0,24,24" Background="#A6FFFFFF" Padding="8,4">
         <Grid>
-          <Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
           <Image Name="Bunny" Width="46" Height="46"/>
           <TextBlock Name="FootTxt" Grid.Column="1" VerticalAlignment="Center" FontSize="11.5" Foreground="#8A6A82" TextWrapping="Wrap"/>
           <CheckBox Name="FxChk" Grid.Column="2" Content="&#10024; Hiệu ứng" IsChecked="True" VerticalAlignment="Center" Margin="6,0" Foreground="#8A6A82" FontSize="11.5"/>
           <Button Name="KeyBtn" Grid.Column="3" Content="&#9000; Phím tắt" Padding="8,2" Margin="4,0" Background="White" BorderBrush="#FFC2D9" FontSize="11.5" ToolTip="Đổi phím tắt"/>
-          <StackPanel Grid.Column="4" Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0,18,0">
+          <Button Name="VerBtn" Grid.Column="4" Content="&#128260; Phiên bản" Padding="8,2" Margin="4,0" Background="White" BorderBrush="#B9D9FF" FontSize="11.5" ToolTip="Cập nhật, hạ cấp, quản lý app"/>
+          <StackPanel Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center" Margin="4,0,18,0">
             <RadioButton Name="LVi" Content="VI" IsChecked="True" Margin="4,0" Foreground="#3F79C9" FontWeight="Bold"/>
             <RadioButton Name="LEn" Content="EN" Margin="4,0" Foreground="#3F79C9" FontWeight="Bold"/>
             <RadioButton Name="LBi" Content="VI+EN" Margin="4,0" Foreground="#3F79C9" FontWeight="Bold"/>
@@ -472,7 +487,7 @@ function Build-Wpf {
 </Window>
 '@
     $win = [System.Windows.Markup.XamlReader]::Parse($xaml)
-    foreach ($n in 'Card', 'Ttl', 'Pill', 'Theme', 'Head', 'Girl1', 'Girl2', 'Bunny', 'Quote', 'QuoteBox', 'Params', 'Q', 'QHint', 'Tabs', 'Lst', 'FootTxt', 'FxChk', 'KeyBtn', 'LVi', 'LEn', 'LBi', 'FxCanvas', 'Cur') {
+    foreach ($n in 'Card', 'Ttl', 'Pill', 'Theme', 'Head', 'Girl1', 'Girl2', 'Bunny', 'Quote', 'QuoteBox', 'Params', 'Q', 'QHint', 'Tabs', 'Lst', 'FootTxt', 'FxChk', 'KeyBtn', 'VerBtn', 'LVi', 'LEn', 'LBi', 'FxCanvas', 'Cur') {
         Set-Variable -Scope Script -Name ('w' + $n) -Value $win.FindName($n)
     }
     $win.Width = [Math]::Max(580, $script:S.w); $win.Height = [Math]::Max(560, $script:S.h)
@@ -521,6 +536,7 @@ function Build-Wpf {
 
     $script:wTheme.Add_Click({ Set-WpfTheme ($script:S.theme -ne 'blue'); Save-Settings })
     $script:wKeyBtn.Add_Click({ Show-HotkeyDialog })
+    $script:wVerBtn.Add_Click({ Open-VersionManager })
     $script:wQuoteBox.Add_MouseLeftButtonDown({ Next-Quote })
     $script:wQ.Add_TextChanged({ $script:wQHint.Visibility = $(if ($script:wQ.Text) { 'Collapsed' } else { 'Visible' }); Update-WpfList })
     $script:wLst.Add_SelectionChanged({ Update-WpfHints })
@@ -761,11 +777,12 @@ try {
     $script:auto = $auto
     [void]$menu.Items.Add($auto)
     $upd = New-Object System.Windows.Forms.ToolStripMenuItem('Tự cập nhật nền')
-    $upd.Checked = [bool]$script:S.autoUpdate
-    $upd.Add_Click({ $script:S.autoUpdate = -not $script:S.autoUpdate; $script:upd.Checked = [bool]$script:S.autoUpdate; Save-Settings })
+    $upd.Checked = [bool](Get-UpdateState).autoUpdate
+    $upd.Add_Click({ $st = Get-UpdateState; $st.autoUpdate = -not $st.autoUpdate; Set-UpdateState $st; $script:upd.Checked = [bool]$st.autoUpdate })
     $script:upd = $upd
     [void]$menu.Items.Add($upd)
-    [void]$menu.Items.Add("Kiểm tra cập nhật ngay (v$(Get-AppVersion))", $null, { Start-Update $true; Show-Reminder 'Đang kiểm tra bản mới ở nền...' })
+    [void]$menu.Items.Add("Cập nhật & phiên bản... (v$(Get-AppVersion))", $null, { Open-VersionManager })
+    [void]$menu.Items.Add('Kiểm tra cập nhật ngay', $null, { Start-Update $true; Show-Reminder 'Đang kiểm tra bản mới ở nền...' })
     [void]$menu.Items.Add('Thoát', $null, {
             $script:quitting = $true
             $script:ni.Visible = $false

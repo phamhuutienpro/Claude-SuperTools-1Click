@@ -82,7 +82,8 @@ body.en span[data-en],body.en a[data-en]{display:inline}
   <p data-vi>Nhấn <b>Alt+Z</b>, nhấp đôi một prompt: nó tự dán vào vị trí con trỏ bạn đang gõ. Popup không chiếm focus, có chibi hồng/xanh, hiệu ứng chuột và 100 câu động lực.</p>
   <p data-en>Press <b>Alt+Z</b>, double-click a prompt: it pastes right where your text cursor was. The popup never steals focus, with pink/blue chibi themes, mouse effects and 100 motivational quotes.</p>
   <div class="cta">
-    <a class="p" href="#install"><span data-vi>⚡ Cài đặt 1 dòng bằng AI</span><span data-en>⚡ One-line install with your AI</span></a>
+    <a class="p" href="https://github.com/phamhuutienpro/Claude-SuperTools-1Click/releases/latest/download/SieuCongCuClaudeCode-Setup.exe"><span data-vi>⬇ Tải Setup.exe</span><span data-en>⬇ Download Setup.exe</span></a>
+    <a class="s" href="#install"><span data-vi>⚡ Cài 1 dòng bằng AI</span><span data-en>⚡ One-line install with your AI</span></a>
     <a class="s" href="https://github.com/phamhuutienpro/Claude-SuperTools-1Click"><span data-vi>Xem mã nguồn trên GitHub</span><span data-en>View source on GitHub</span></a>
   </div>
 </div></header>
@@ -97,6 +98,7 @@ body.en span[data-en],body.en a[data-en]{display:inline}
     <div class="card"><img src="img/chibi-b-camera.png" alt=""><div><h3><span data-vi>5 ô tham số dùng chung</span><span data-en>5 shared parameters</span></h3><p data-vi>Cổng, tình trạng, yêu cầu, lỗi, mục đích; được ghi nhớ.</p><p data-en>Port, status, requirement, error, purpose; remembered.</p></div></div>
     <div class="card"><img src="img/chibi-p-check.png" alt=""><div><h3><span data-vi>Hồng · Xanh</span><span data-en>Pink · Blue</span></h3><p data-vi>Theme hồng với nhân vật nữ, theme xanh với nhân vật nam, đổi bằng nút 🌈.</p><p data-en>Pink theme with girl chibi, blue theme with boy chibi; switch with 🌈.</p></div></div>
     <div class="card"><img src="img/chibi-b-box.png" alt=""><div><h3><span data-vi>Phím tắt tùy chỉnh</span><span data-en>Custom hotkey</span></h3><p data-vi>Đổi tổ hợp phím, có thông báo nhắc để dễ nhớ; chạy cùng Windows, thu nhỏ về khay.</p><p data-en>Rebind the hotkey with reminders; starts with Windows and lives in the tray.</p></div></div>
+    <div class="card"><img src="img/chibi-b-check.png" alt=""><div><h3><span data-vi>Cập nhật &amp; hạ cấp</span><span data-en>Update &amp; downgrade</span></h3><p data-vi>Nút Phiên bản: cập nhật tay, quay về bản trước, chọn bản cũ, cập nhật tất cả app.</p><p data-en>Versions button: manual update, go back, pick an older version, update all apps.</p></div></div>
     <div class="card"><img src="img/chibi-p-rocket.png" alt=""><div><h3><span data-vi>Tự cập nhật nền</span><span data-en>Silent auto-update</span></h3><p data-vi>Khi mở máy và mỗi 24 giờ: có bản mới tự tải, tự cài, không hỏi.</p><p data-en>At startup and every 24 h: new versions download and install by themselves, no prompts.</p></div></div>
   </div>
 </div></section>
@@ -129,8 +131,9 @@ body.en span[data-en],body.en a[data-en]{display:inline}
     <tr><th>Lệnh / Command</th><th><span data-vi>Việc làm</span><span data-en>What it does</span></th></tr>
     <tr><td><code>repo-store list</code></td><td><span data-vi>Xem repo trong kho, đã cài / có bản mới</span><span data-en>List store repos, installed / update available</span></td></tr>
     <tr><td><code>repo-store install &lt;id&gt;</code></td><td><span data-vi>Tải về và chạy trình cài đặt tự động</span><span data-en>Download and run the automatic installer</span></td></tr>
-    <tr><td><code>repo-store update --all</code></td><td><span data-vi>Cập nhật an toàn, không ghi đè file bạn đã sửa</span><span data-en>Safe update, never overwrites files you edited</span></td></tr>
-    <tr><td><code>repo-store remove &lt;id&gt; --yes</code></td><td><span data-vi>Xóa bản tải về trên máy bạn</span><span data-en>Delete the local download</span></td></tr>
+    <tr><td><code>repo-store update -All</code></td><td><span data-vi>Cập nhật tất cả repo đã cài</span><span data-en>Update every installed repo</span></td></tr>
+    <tr><td><code>repo-store rollback &lt;id&gt;</code></td><td><span data-vi>Hạ cấp về bản trước (giữ 3 bản gần nhất)</span><span data-en>Downgrade to the previous version (3 latest kept)</span></td></tr>
+    <tr><td><code>repo-store remove &lt;id&gt; -Yes</code></td><td><span data-vi>Xóa bản tải về trên máy bạn</span><span data-en>Delete the local download</span></td></tr>
   </table>
 </div></section>
 

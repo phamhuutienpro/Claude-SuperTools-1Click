@@ -116,7 +116,7 @@ Write-Host "3. Tự động mở giao diện Prompt Hub trong 2 giây..." -Foreg
 Write-Host ""
 Write-Host "SIEU CONG CU CLAUDE CODE (popup khong chiem con tro/focus van ban)" -ForegroundColor Magenta
 # Don file cua ban cu (Edge/HTA da bo)
-foreach ($old in "popup-ui.html", "Chay-Popup-Edge.cmd", "Chay-Popup-HTA.cmd", "Chay-Popup-WPF.cmd") {
+foreach ($old in "popup-ui.html", "Chay-Popup-Edge.cmd", "Chay-Popup-HTA.cmd", "Chay-Popup-WPF.cmd", "repo-store.cjs") {
     Remove-Item (Join-Path $targetToolsDir $old) -Force -ErrorAction SilentlyContinue
 }
 if (-not $NoPopup) {

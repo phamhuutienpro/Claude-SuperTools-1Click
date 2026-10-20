@@ -22,6 +22,10 @@
 <a name="-tiếng-việt"></a>
 ## 🇻🇳 Tiếng Việt
 
+### 💾 Tải bản cài đặt .exe
+
+[**⬇ SieuCongCuClaudeCode-Setup.exe**](https://github.com/phamhuutienpro/Claude-SuperTools-1Click/releases/latest/download/SieuCongCuClaudeCode-Setup.exe) · [Tất cả bản phát hành](https://github.com/phamhuutienpro/Claude-SuperTools-1Click/releases): chạy file là cài xong, không cần git. File chưa ký số nên Windows SmartScreen có thể cảnh báo: chọn *More info → Run anyway*; đối chiếu SHA256 đi kèm.
+
 ### ⚡ Cài đặt chỉ với một dòng
 
 Dán dòng này vào AI IDE (Claude Code, Cursor, Windsurf, Antigravity...). Không cần tải file trước:
@@ -65,7 +69,9 @@ Trình cài đặt chép công cụ vào `%USERPROFILE%\.claude\tools`, tạo sh
 
 ### 🔄 Tự cập nhật nền
 
-Sau khi cài, popup tự kiểm tra bản mới trên GitHub **khi mở máy và mỗi 24 giờ**. Có bản mới thì tự tải, tự cài và tự khởi động lại popup ở nền, **không hỏi bạn**; chỉ hiện một thông báo ngắn ghi chú thay đổi. Mỗi bản phát hành đã qua kiểm tra cú pháp và quét bí mật trước khi lên GitHub. Tắt ở menu khay: **Tự cập nhật nền**; kiểm tra ngay: **Kiểm tra cập nhật ngay**. Cùng lúc, các repo bạn đã cài từ kho cũng được cập nhật.
+Sau khi cài, popup tự kiểm tra bản mới trên GitHub **khi mở máy và mỗi 24 giờ**. Có bản mới thì tự tải, tự cài và tự khởi động lại popup ở nền, **không hỏi bạn**; chỉ hiện một thông báo ngắn ghi chú thay đổi. Mỗi bản phát hành đã qua kiểm tra cú pháp và quét bí mật trước khi lên GitHub. Cùng lúc, các repo bạn đã cài từ kho cũng được cập nhật.
+
+Bấm nút **🔄 Phiên bản** ở chân popup (hoặc menu khay → **Cập nhật & phiên bản**) để: bật/tắt tự cập nhật, **Cập nhật ngay** bằng tay, **Quay về bản trước** hoặc **chọn một phiên bản cũ để hạ cấp** (giữ 3 bản gần nhất trên máy, các bản cũ hơn tải từ GitHub), và cập nhật / hạ cấp từng app trong kho hoặc **cập nhật tất cả**. Hạ cấp sẽ ghim phiên bản đó cho đến khi bạn bấm Cập nhật ngay.
 
 ### 🐙 Kho repo & cập nhật
 
@@ -74,8 +80,9 @@ Danh sách các dự án của tác giả để bạn tự chọn cài và cập
 ```powershell
 repo-store list                  # repo trong kho, đã cài / có bản mới chưa
 repo-store install <id>          # tải về và chạy trình cài đặt tự động
-repo-store update --all          # cập nhật an toàn, không ghi đè file bạn đã sửa
-repo-store remove <id> --yes     # xóa bản tải về trên máy bạn
+repo-store update -All          # cập nhật tất cả repo đã cài (không cần git hay Node.js)
+repo-store rollback <id>        # hạ cấp về bản trước (giữ 3 bản gần nhất); thêm -Ref v1.0.0 để chọn bản
+repo-store remove <id> -Yes     # xóa bản tải về trên máy bạn
 ```
 
 Trong popup có tab **Kho Repo & Cập Nhật** với 3 prompt để nhờ AI làm giúp. Kho chỉ chấp nhận link thuộc `github.com/phamhuutienpro`.
@@ -103,6 +110,10 @@ Gỡ: chuột phải icon khay → **Thoát**; xóa `SieuCongCuClaudeCode.lnk` t
 
 <a name="-english"></a>
 ## 🇬🇧 English
+
+### 💾 Download the .exe installer
+
+[**⬇ SieuCongCuClaudeCode-Setup.exe**](https://github.com/phamhuutienpro/Claude-SuperTools-1Click/releases/latest/download/SieuCongCuClaudeCode-Setup.exe) · [All releases](https://github.com/phamhuutienpro/Claude-SuperTools-1Click/releases): run it and you're done, no git needed. The file is unsigned, so SmartScreen may warn: choose *More info → Run anyway*; compare the attached SHA256.
 
 ### ⚡ Install with a single line
 
@@ -138,7 +149,9 @@ The installer copies the tools into `%USERPROFILE%\.claude\tools`, creates a Sta
 
 ### 🔄 Silent background updates
 
-After install, the popup checks GitHub for a new version **at startup and every 24 hours**. When there is one it downloads, installs and restarts the popup in the background **without asking**; you only get a short toast with the release notes. Every release passes syntax checks and a secret scan before it reaches GitHub. Turn it off in the tray menu (**Tự cập nhật nền**), or check now with **Kiểm tra cập nhật ngay**. Repos you installed from the store are updated at the same time.
+After install, the popup checks GitHub for a new version **at startup and every 24 hours**. When there is one it downloads, installs and restarts the popup in the background **without asking**; you only get a short toast with the release notes. Every release passes syntax checks and a secret scan before it reaches GitHub. Repos you installed from the store are updated at the same time.
+
+Click **🔄 Phiên bản** in the popup footer (or tray menu → **Cập nhật & phiên bản**) to: turn auto-update on/off, **update now** by hand, **go back to the previous version** or **pick an older version to downgrade** (3 latest kept locally, older ones download from GitHub), and update / downgrade each store app or **update all**. A downgrade pins that version until you press Update now.
 
 ### 🐙 Repo store & updates
 
@@ -147,8 +160,9 @@ A catalog of the author's projects you can pick from to install and update. **Re
 ```powershell
 repo-store list                  # store repos, installed / update available
 repo-store install <id>          # download and run the automatic installer
-repo-store update --all          # safe update, never overwrites files you edited
-repo-store remove <id> --yes     # delete the local download
+repo-store update -All          # update every installed repo (no git or Node.js needed)
+repo-store rollback <id>        # go back to the previous version (3 latest kept); add -Ref v1.0.0 to pick one
+repo-store remove <id> -Yes     # delete the local download
 ```
 
 The popup has a **Kho Repo & Cập Nhật** tab with 3 prompts for your AI to do it for you. The store only accepts links under `github.com/phamhuutienpro`.
@@ -184,9 +198,11 @@ docs/                       website (GitHub Pages) + images / trang web + ảnh
 tools/popup-host.ps1        WPF popup, hotkeys, tray
 tools/prompts_library.json  prompt library / thư viện prompt
 tools/quotes.json           100 quotes / 100 câu động lực
-tools/auto-update.ps1       silent updater / tu cap nhat nen
+tools/auto-update.ps1       silent updater, rollback / tu cap nhat nen, ha cap
+tools/version-manager.ps1   update & version window / cua so phien ban
+build-exe.ps1                builds Setup.exe / dong goi Setup.exe
 tools/VERSION                installed version / phien ban
-tools/repo-store.cjs        repo store client / kho repo (cài, cập nhật)
+tools/repo-store.ps1        repo store client / kho repo
 tools/repo-catalog.json     store catalog / danh sách kho
 tools/chibi-*.png           characters (SVG sources in tools/chibi-src)
 ```
