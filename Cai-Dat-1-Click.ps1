@@ -1,4 +1,4 @@
-﻿param([switch]$NoPopup)
+﻿param([switch]$NoPopup, [switch]$Update, [string]$ClaudeDir = "")
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 # ==============================================================================
@@ -14,7 +14,7 @@ Write-Host "====================================================================
 
 # 1. Xác định thư mục người dùng (%USERPROFILE%\.claude)
 $userHome = [System.Environment]::GetFolderPath([System.Environment+SpecialFolder]::UserProfile)
-$targetClaudeDir = Join-Path $userHome ".claude"
+$targetClaudeDir = if ($ClaudeDir) { $ClaudeDir } else { Join-Path $userHome ".claude" }
 $targetToolsDir = Join-Path $targetClaudeDir "tools"
 $targetKnowledgeDir = Join-Path $targetClaudeDir "knowledge"
 
@@ -60,7 +60,7 @@ Write-Host "[4/5] Đang kiểm tra và cấu hình biến môi trường PATH...
 $userPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
 $pathList = if ([string]::IsNullOrWhiteSpace($userPath)) { @() } else { $userPath -split ';' }
 
-if ($pathList -notcontains $targetToolsDir) {
+if (($pathList -notcontains $targetToolsDir) -and -not $ClaudeDir) {
     $newPath = if ([string]::IsNullOrWhiteSpace($userPath)) { $targetToolsDir } else { "$userPath;$targetToolsDir" }
     [System.Environment]::SetEnvironmentVariable("Path", $newPath, "User")
     Write-Host "      --> ĐÃ BỔ SUNG $targetToolsDir VÀO PATH USER THÀNH CÔNG!" -ForegroundColor Yellow
@@ -133,6 +133,8 @@ if (-not $NoPopup) {
     Start-Process (Join-Path $targetToolsDir "Chay-Popup.cmd")
     Write-Host "Da chay popup. Nhan Alt+Z de mo; dong cua so thi thu nho ve tray. Doi phim tat: nut 'Phim tat' trong popup hoac menu tray." -ForegroundColor Green
 } else {
-    Start-Sleep -Seconds 2
-    Start-Process (Join-Path $targetToolsDir "prompt-hub.html")
+    if (-not $Update) {
+        Start-Sleep -Seconds 2
+        Start-Process (Join-Path $targetToolsDir "prompt-hub.html")
+    }
 }

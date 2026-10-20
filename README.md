@@ -63,6 +63,10 @@ Trình cài đặt chép công cụ vào `%USERPROFILE%\.claude\tools`, tạo sh
 | ✨ **Hiệu ứng chuột** | Vệt lấp lánh, nổ hạt khi bấm, thẻ phát sáng; tắt được ở ô **Hiệu ứng** |
 | 🔔 **Khay hệ thống** | Đóng cửa sổ chỉ thu nhỏ về khay; tự chạy khi mở máy; nhắc phím tắt mỗi giờ |
 
+### 🔄 Tự cập nhật nền
+
+Sau khi cài, popup tự kiểm tra bản mới trên GitHub **khi mở máy và mỗi 24 giờ**. Có bản mới thì tự tải, tự cài và tự khởi động lại popup ở nền, **không hỏi bạn**; chỉ hiện một thông báo ngắn ghi chú thay đổi. Mỗi bản phát hành đã qua kiểm tra cú pháp và quét bí mật trước khi lên GitHub. Tắt ở menu khay: **Tự cập nhật nền**; kiểm tra ngay: **Kiểm tra cập nhật ngay**. Cùng lúc, các repo bạn đã cài từ kho cũng được cập nhật.
+
 ### 🐙 Kho repo & cập nhật
 
 Danh sách các dự án của tác giả để bạn tự chọn cài và cập nhật. **Chỉ đọc**: bạn không có và không cần quyền sửa hay xóa gì trên GitHub của tác giả. Cần `git`, không cần đăng nhập GitHub.
@@ -132,6 +136,10 @@ The installer copies the tools into `%USERPROFILE%\.claude\tools`, creates a Sta
 | ✨ **Mouse effects** | Sparkle trail, click bursts, glowing cards; toggle with **Hiệu ứng** |
 | 🔔 **System tray** | Closing only minimizes to tray; starts with Windows; hourly hotkey reminder |
 
+### 🔄 Silent background updates
+
+After install, the popup checks GitHub for a new version **at startup and every 24 hours**. When there is one it downloads, installs and restarts the popup in the background **without asking**; you only get a short toast with the release notes. Every release passes syntax checks and a secret scan before it reaches GitHub. Turn it off in the tray menu (**Tự cập nhật nền**), or check now with **Kiểm tra cập nhật ngay**. Repos you installed from the store are updated at the same time.
+
 ### 🐙 Repo store & updates
 
 A catalog of the author's projects you can pick from to install and update. **Read-only**: you have no way (and no need) to edit or delete anything on the author's GitHub. Needs `git`, no GitHub login.
@@ -176,6 +184,8 @@ docs/                       website (GitHub Pages) + images / trang web + ảnh
 tools/popup-host.ps1        WPF popup, hotkeys, tray
 tools/prompts_library.json  prompt library / thư viện prompt
 tools/quotes.json           100 quotes / 100 câu động lực
+tools/auto-update.ps1       silent updater / tu cap nhat nen
+tools/VERSION                installed version / phien ban
 tools/repo-store.cjs        repo store client / kho repo (cài, cập nhật)
 tools/repo-catalog.json     store catalog / danh sách kho
 tools/chibi-*.png           characters (SVG sources in tools/chibi-src)

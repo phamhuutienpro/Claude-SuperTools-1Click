@@ -213,7 +213,7 @@ function Get-PromptText($id, $lang, $params) {
 # ---------- cai dat ----------
 $script:setPath = Join-Path $env:LOCALAPPDATA 'PromptSpotlight\settings.json'
 $script:defaultKeys = @('Alt+Z', 'Alt+Shift+Z', 'Ctrl+Shift+Z', 'Ctrl+Alt+Z')
-$script:S = @{ w = 780; h = 800; lang = 'vi'; theme = 'pink'; params = @{}; fx = $true; hotkeys = $script:defaultKeys; remind = $true }
+$script:S = @{ w = 780; h = 800; lang = 'vi'; theme = 'pink'; params = @{}; fx = $true; hotkeys = $script:defaultKeys; remind = $true; autoUpdate = $true }
 function Load-Settings {
     try {
         if (Test-Path $script:setPath) {
@@ -224,6 +224,7 @@ function Load-Settings {
             if ($o.theme) { $script:S.theme = [string]$o.theme }
             if ($null -ne $o.fx) { $script:S.fx = [bool]$o.fx }
             if ($null -ne $o.remind) { $script:S.remind = [bool]$o.remind }
+            if ($null -ne $o.autoUpdate) { $script:S.autoUpdate = [bool]$o.autoUpdate }
             if ($o.hotkeys) { $script:S.hotkeys = @($o.hotkeys | ForEach-Object { [string]$_ }) }
             if ($o.params) { foreach ($kv in $o.params.PSObject.Properties) { $script:S.params[$kv.Name] = [string]$kv.Value } }
         }
@@ -363,6 +364,28 @@ function Show-Reminder([string]$msg) {
     if ($script:ni) { $script:ni.ShowBalloonTip(5000, 'Siêu Công Cụ Claude Code', $msg, 'Info') }
 }
 
+# ---------- tu cap nhat nen ----------
+function Get-AppVersion { $f = Join-Path $script:dir 'VERSION'; if (Test-Path $f) { (Get-Content $f -Raw).Trim() } else { '?' } }
+function Start-Update([bool]$force = $false) {
+    $up = Join-Path $script:dir 'auto-update.ps1'
+    if (-not (Test-Path $up)) { return }
+    $installed = Join-Path $env:USERPROFILE '.claude\tools'
+    if (-not $force -and ($script:dir.TrimEnd('\') -ine $installed.TrimEnd('\'))) { return }
+    if (-not $force -and -not $script:S.autoUpdate) { return }
+    $a = @('-NoProfile', '-WindowStyle', 'Hidden', '-ExecutionPolicy', 'Bypass', '-File', $up)
+    if ($force) { $a += '-Force' }
+    Start-Process -FilePath 'powershell.exe' -ArgumentList $a -WindowStyle Hidden
+    Log "auto-update started (force=$force)"
+}
+function Show-UpdateNotice {
+    $nf = Join-Path $env:LOCALAPPDATA 'PromptSpotlight\update-notice.json'
+    if (-not (Test-Path $nf)) { return }
+    try {
+        $n = Get-Content -Raw -Encoding UTF8 $nf | ConvertFrom-Json
+        Remove-Item $nf -Force
+        Show-Reminder ("Đã tự cập nhật lên phiên bản $($n.to).`n$($n.notes)")
+    } catch { Log "notice: $_" }
+}
 # ---------- khoi dong cung Windows ----------
 function Get-StartupLnk { Join-Path ([Environment]::GetFolderPath('Startup')) 'SieuCongCuClaudeCode.lnk' }
 function Test-Autostart { Test-Path (Get-StartupLnk) }
@@ -737,6 +760,12 @@ try {
     $auto.Add_Click({ Set-Autostart (-not $script:auto.Checked); $script:auto.Checked = Test-Autostart })
     $script:auto = $auto
     [void]$menu.Items.Add($auto)
+    $upd = New-Object System.Windows.Forms.ToolStripMenuItem('Tự cập nhật nền')
+    $upd.Checked = [bool]$script:S.autoUpdate
+    $upd.Add_Click({ $script:S.autoUpdate = -not $script:S.autoUpdate; $script:upd.Checked = [bool]$script:S.autoUpdate; Save-Settings })
+    $script:upd = $upd
+    [void]$menu.Items.Add($upd)
+    [void]$menu.Items.Add("Kiểm tra cập nhật ngay (v$(Get-AppVersion))", $null, { Start-Update $true; Show-Reminder 'Đang kiểm tra bản mới ở nền...' })
     [void]$menu.Items.Add('Thoát', $null, {
             $script:quitting = $true
             $script:ni.Visible = $false
@@ -765,7 +794,16 @@ try {
             }
         })
     $watch.Start()
-    Log "started; failed hotkeys: $($failed -join ',')"
+    Show-UpdateNotice
+    $u1 = New-Object System.Windows.Threading.DispatcherTimer
+    $u1.Interval = [TimeSpan]::FromSeconds(90)
+    $u1.Add_Tick({ $script:u1.Stop(); Start-Update })
+    $script:u1 = $u1; $u1.Start()
+    $u24 = New-Object System.Windows.Threading.DispatcherTimer
+    $u24.Interval = [TimeSpan]::FromHours(24)
+    $u24.Add_Tick({ Start-Update })
+    $u24.Start()
+    Log "started v$(Get-AppVersion); failed hotkeys: $($failed -join '','')"
 
     [void]$script:app.Run()
 } catch {

@@ -1,0 +1,2 @@
+v1.1.0 - Tu cap nhat nen, kho repo co tts va dichvanban, trang web song ngu.
+v1.1.0 - Auto background updates, repo store adds tts and dichvanban, bilingual website.

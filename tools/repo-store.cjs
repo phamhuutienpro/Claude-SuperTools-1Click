@@ -94,7 +94,7 @@ function runSetup(e, dir) {
     }
     case 'update': {
       const targets = args.includes('--all') ? cat.list.filter(isInstalled) : [find(key)].filter(Boolean);
-      if (!targets.length) fail('Khong co repo nao de cap nhat. Dung: repo-store update <id> hoac --all');
+      if (!targets.length) { if (args.includes('--all')) { say('Chua cai repo nao tu kho, khong co gi de cap nhat.'); break; } fail('Khong co repo nao de cap nhat. Dung: repo-store update <id> hoac --all'); }
       for (const e of targets) {
         checkUrl(e);
         const dir = dirOf(e);
