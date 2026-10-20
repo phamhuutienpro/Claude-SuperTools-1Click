@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siêu Công Cụ Claude Code · Quà 20/10</title>
+<meta name="description" content="Popup prompt nổi cho Claude Code trên Windows: dán thẳng vào con trỏ, chibi hồng/xanh, hiệu ứng chuột, phím tắt tùy chỉnh. Floating prompt popup for Claude Code on Windows.">
+<meta property="og:title" content="Siêu Công Cụ Claude Code · Quà 20/10">
+<meta property="og:description" content="Floating prompt popup for Claude Code on Windows. Popup prompt nổi, dán vào con trỏ.">
+<meta property="og:image" content="img/banner.png">
+<link rel="icon" href="img/chibi-heart.png">
+<style>
+:root{--bg1:#ffe3ee;--bg2:#fff6fa;--bg3:#e2f0ff;--main:#e8559a;--soft:#ff8fb6;--line:#ffc2d9;--ink:#4a3350;--mute:#8a6a82;--card:#ffffffcc}
+body.blue{--bg1:#dcecff;--bg2:#f4f9ff;--bg3:#e6eeff;--main:#3f79c9;--soft:#7fb8ff;--line:#b9d9ff}
+@media (prefers-color-scheme:dark){body{--ink:#f3e8ef;--mute:#c9b3c3;--card:#2a2030cc}body{background:#1d1622 !important}.hero,.sec{color:var(--ink)}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI","Segoe UI Emoji",system-ui,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--bg1),var(--bg2) 45%,var(--bg3));min-height:100vh;line-height:1.6}
+a{color:var(--main)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);background:#ffffffb0;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:14px;height:56px}
+nav .brand{font-weight:700;color:var(--main);display:flex;align-items:center;gap:8px;text-decoration:none}
+nav .brand img{width:30px;height:30px}
+nav .sp{flex:1}
+nav a.l{color:var(--ink);text-decoration:none;font-size:14px}
+.btn{border:1.5px solid var(--line);background:#fff;color:var(--main);border-radius:999px;padding:6px 14px;font-weight:700;cursor:pointer;font-size:13px}
+.btn.on{background:var(--soft);color:#fff;border-color:var(--soft)}
+.hero{padding:44px 0 20px;text-align:center}
+.hero img.banner{width:100%;max-width:1000px;border-radius:24px;box-shadow:0 14px 40px #e8559a33}
+.hero h1{font-size:clamp(28px,5vw,46px);margin:22px 0 6px;color:var(--main)}
+.hero p{font-size:18px;color:var(--mute);margin:0 auto;max-width:720px}
+.cta{margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta a{padding:11px 22px;border-radius:999px;text-decoration:none;font-weight:700}
+.cta .p{background:var(--soft);color:#fff}
+.cta .s{background:#fff;border:2px solid var(--line);color:var(--main)}
+.sec{padding:34px 0}
+.sec h2{font-size:28px;margin:0 0 6px;color:var(--main)}
+.sec .sub{color:var(--mute);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 26px #e8559a30}
+.card img{width:58px;height:58px;flex:none}
+.card h3{margin:0 0 4px;font-size:16px}
+.card p{margin:0;font-size:14px;color:var(--mute)}
+.shots{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+.shots figure{margin:0;text-align:center;max-width:470px;flex:1 1 320px}
+.shots img{width:100%;border-radius:20px;box-shadow:0 12px 34px #00000026}
+.shots figcaption{margin-top:8px;color:var(--mute);font-size:14px}
+pre{background:#2b2230;color:#ffeaf3;padding:16px 84px 16px 16px;border-radius:16px;overflow:auto;font-size:13.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;margin:0}
+.cmd{position:relative}
+.cmd .btn{position:absolute;right:10px;top:10px;padding:4px 12px}
+.steps{counter-reset:s;display:grid;gap:12px}
+.steps li{list-style:none;counter-increment:s;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:14px 16px 14px 56px;position:relative}
+.steps li:before{content:counter(s);position:absolute;left:14px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--soft);color:#fff;font-weight:700;display:grid;place-items:center}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden}
+td,th{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;font-size:14.5px}
+th{background:var(--soft);color:#fff}
+code{background:#ffffffb0;border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:13px;color:var(--ink)}
+footer{padding:30px 0 50px;text-align:center;color:var(--mute);font-size:14px}
+footer img{width:46px;vertical-align:middle;margin:0 4px}
+[data-en]{display:none}
+body.en [data-vi]{display:none}
+body.en [data-en]{display:revert}
+body.en span[data-en],body.en a[data-en]{display:inline}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top"><img src="img/chibi-heart.png" alt=""> <span data-vi>Siêu Công Cụ Claude Code</span><span data-en>Claude Code SuperTools</span></a>
+  <span class="sp"></span>
+  <a class="l" href="#features"><span data-vi>Tính năng</span><span data-en>Features</span></a>
+  <a class="l" href="#install"><span data-vi>Cài đặt</span><span data-en>Install</span></a>
+  <a class="l" href="#store"><span data-vi>Kho repo</span><span data-en>Repo store</span></a>
+  <button class="btn" id="bLang">VI / EN</button>
+  <button class="btn" id="bTheme">&#127752;</button>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <img class="banner" src="img/banner.png" alt="Siêu Công Cụ Claude Code">
+  <h1><span data-vi>Prompt đúng lúc, dán đúng chỗ</span><span data-en>The right prompt, pasted at the right place</span></h1>
+  <p data-vi>Nhấn <b>Alt+Z</b>, nhấp đôi một prompt: nó tự dán vào vị trí con trỏ bạn đang gõ. Popup không chiếm focus, có chibi hồng/xanh, hiệu ứng chuột và 100 câu động lực.</p>
+  <p data-en>Press <b>Alt+Z</b>, double-click a prompt: it pastes right where your text cursor was. The popup never steals focus, with pink/blue chibi themes, mouse effects and 100 motivational quotes.</p>
+  <div class="cta">
+    <a class="p" href="#install"><span data-vi>⚡ Cài đặt 1 dòng bằng AI</span><span data-en>⚡ One-line install with your AI</span></a>
+    <a class="s" href="https://github.com/phamhuutienpro/Claude-SuperTools-1Click"><span data-vi>Xem mã nguồn trên GitHub</span><span data-en>View source on GitHub</span></a>
+  </div>
+</div></header>
+
+<section class="sec" id="features"><div class="wrap">
+  <h2><span data-vi>✨ Tính năng</span><span data-en>✨ Features</span></h2>
+  <p class="sub"><span data-vi>Mọi thứ cho một ngày làm việc với Claude Code mượt hơn.</span><span data-en>Everything for a smoother day with Claude Code.</span></p>
+  <div class="grid">
+    <div class="card"><img src="img/chibi-p-rocket.png" alt=""><div><h3><span data-vi>Dán vào con trỏ</span><span data-en>Paste at your cursor</span></h3><p data-vi>Nhấp đôi prompt: tự copy, đóng popup, trả focus và dán.</p><p data-en>Double-click a prompt: copy, close, restore focus and paste.</p></div></div>
+    <div class="card"><img src="img/chibi-b-laptop.png" alt=""><div><h3><span data-vi>Không chiếm focus</span><span data-en>Never steals focus</span></h3><p data-vi>Cửa sổ giữ nguyên con trỏ đang gõ; chỉ lấy focus khi bạn bấm vào ô nhập.</p><p data-en>Keeps your typing cursor; only takes focus when you click an input.</p></div></div>
+    <div class="card"><img src="img/chibi-p-book.png" alt=""><div><h3><span data-vi>22 prompt có sẵn</span><span data-en>22 ready prompts</span></h3><p data-vi>Chia tab: trình duyệt, server, giao diện, kho tri thức, lập trình, đóng gói, kho repo.</p><p data-en>Tabs: browser, server, UI, knowledge, coding, packaging, repo store.</p></div></div>
+    <div class="card"><img src="img/chibi-b-camera.png" alt=""><div><h3><span data-vi>5 ô tham số dùng chung</span><span data-en>5 shared parameters</span></h3><p data-vi>Cổng, tình trạng, yêu cầu, lỗi, mục đích; được ghi nhớ.</p><p data-en>Port, status, requirement, error, purpose; remembered.</p></div></div>
+    <div class="card"><img src="img/chibi-p-check.png" alt=""><div><h3><span data-vi>Hồng · Xanh</span><span data-en>Pink · Blue</span></h3><p data-vi>Theme hồng với nhân vật nữ, theme xanh với nhân vật nam, đổi bằng nút 🌈.</p><p data-en>Pink theme with girl chibi, blue theme with boy chibi; switch with 🌈.</p></div></div>
+    <div class="card"><img src="img/chibi-b-box.png" alt=""><div><h3><span data-vi>Phím tắt tùy chỉnh</span><span data-en>Custom hotkey</span></h3><p data-vi>Đổi tổ hợp phím, có thông báo nhắc để dễ nhớ; chạy cùng Windows, thu nhỏ về khay.</p><p data-en>Rebind the hotkey with reminders; starts with Windows and lives in the tray.</p></div></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <h2><span data-vi>🖼️ Giao diện</span><span data-en>🖼️ Screenshots</span></h2>
+  <div class="shots">
+    <figure><img src="img/popup-pink.png" alt="Pink theme"><figcaption><span data-vi>Theme hồng · nhân vật nữ</span><span data-en>Pink theme · girl chibi</span></figcaption></figure>
+    <figure><img src="img/popup-blue.png" alt="Blue theme"><figcaption><span data-vi>Theme xanh · nhân vật nam</span><span data-en>Blue theme · boy chibi</span></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="sec" id="install"><div class="wrap">
+  <h2><span data-vi>⚡ Cài đặt chỉ với một dòng</span><span data-en>⚡ Install with a single line</span></h2>
+  <p class="sub"><span data-vi>Dán vào AI IDE (Claude Code, Cursor, Windsurf, Antigravity...). Không cần tải file trước.</span><span data-en>Paste into your AI IDE (Claude Code, Cursor, Windsurf, Antigravity...). No download needed.</span></p>
+  <div class="cmd" data-vi><pre id="cVi">Đọc https://raw.githubusercontent.com/phamhuutienpro/Claude-SuperTools-1Click/main/INSTALL_PROMPT.md rồi làm đúng hướng dẫn trong đó để cài dự án https://github.com/phamhuutienpro/Claude-SuperTools-1Click cho tôi. Tự làm hết các bước, đọc script trước khi chạy, báo cáo song ngữ khi xong.</pre><button class="btn" data-copy="cVi">Copy</button></div>
+  <div class="cmd" data-en><pre id="cEn">Read https://raw.githubusercontent.com/phamhuutienpro/Claude-SuperTools-1Click/main/INSTALL_PROMPT.md and follow it exactly to install https://github.com/phamhuutienpro/Claude-SuperTools-1Click for me. Do every step yourself, read scripts before running them, and report bilingually when done.</pre><button class="btn" data-copy="cEn">Copy</button></div>
+  <h3 style="margin:26px 0 10px"><span data-vi>Hoặc cài thủ công</span><span data-en>Or install manually</span></h3>
+  <ol class="steps" style="padding:0;margin:0">
+    <li><span data-vi>Cài <code>git</code> (nếu chưa có): <code>winget install Git.Git</code></span><span data-en>Install <code>git</code> if missing: <code>winget install Git.Git</code></span></li>
+    <li><code>git clone https://github.com/phamhuutienpro/Claude-SuperTools-1Click.git</code></li>
+    <li><span data-vi>Chạy <code>Cai-Dat-1-Click.cmd</code>. Xong, nhấn <b>Alt+Z</b>.</span><span data-en>Run <code>Cai-Dat-1-Click.cmd</code>. Then press <b>Alt+Z</b>.</span></li>
+  </ol>
+</div></section>
+
+<section class="sec" id="store"><div class="wrap">
+  <h2><span data-vi>🐙 Kho repo &amp; cập nhật</span><span data-en>🐙 Repo store &amp; updates</span></h2>
+  <p class="sub"><span data-vi>Chọn repo bạn thích để cài và cập nhật. Chỉ đọc: không có quyền sửa hay xóa GitHub của tác giả.</span><span data-en>Pick the repos you like to install and update. Read-only: no way to edit or delete the author's GitHub.</span></p>
+  <table>
+    <tr><th>Lệnh / Command</th><th><span data-vi>Việc làm</span><span data-en>What it does</span></th></tr>
+    <tr><td><code>repo-store list</code></td><td><span data-vi>Xem repo trong kho, đã cài / có bản mới</span><span data-en>List store repos, installed / update available</span></td></tr>
+    <tr><td><code>repo-store install &lt;id&gt;</code></td><td><span data-vi>Tải về và chạy trình cài đặt tự động</span><span data-en>Download and run the automatic installer</span></td></tr>
+    <tr><td><code>repo-store update --all</code></td><td><span data-vi>Cập nhật an toàn, không ghi đè file bạn đã sửa</span><span data-en>Safe update, never overwrites files you edited</span></td></tr>
+    <tr><td><code>repo-store remove &lt;id&gt; --yes</code></td><td><span data-vi>Xóa bản tải về trên máy bạn</span><span data-en>Delete the local download</span></td></tr>
+  </table>
+</div></section>
+
+<footer><div class="wrap">
+  <img src="img/chibi-bunny.png" alt=""><img src="img/chibi-cat.png" alt=""><img src="img/chibi-bear.png" alt="">
+  <p data-vi>Làm với ❤ nhân ngày 20/10 · <a href="https://github.com/phamhuutienpro/Claude-SuperTools-1Click">GitHub</a></p>
+  <p data-en>Made with ❤ for Oct 20 · <a href="https://github.com/phamhuutienpro/Claude-SuperTools-1Click">GitHub</a></p>
+</div></footer>
+
+<script>
+(function () {
+  var b = document.body;
+  function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  var lang = get('lang') || ((navigator.language || 'vi').slice(0, 2) === 'vi' ? 'vi' : 'en');
+  function applyLang() { b.classList.toggle('en', lang === 'en'); document.documentElement.lang = lang; set('lang', lang); }
+  function applyTheme() { b.classList.toggle('blue', get('theme') === 'blue'); }
+  document.getElementById('bLang').onclick = function () { lang = lang === 'vi' ? 'en' : 'vi'; applyLang(); };
+  document.getElementById('bTheme').onclick = function () { set('theme', get('theme') === 'blue' ? 'pink' : 'blue'); applyTheme(); };
+  var cp = document.querySelectorAll('[data-copy]');
+  for (var i = 0; i < cp.length; i++) cp[i].onclick = function () {
+    var t = document.getElementById(this.getAttribute('data-copy')).textContent, btn = this;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { btn.textContent = '✓'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); });
+  };
+  applyLang(); applyTheme();
+})();
+</script>
+</body>
+</html>

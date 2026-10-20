@@ -1,12 +1,60 @@
 [
-  {
-    "id": "claude-supertools-1click",
-    "name": "Claude SuperTools 1-Click",
-    "name_vi": "Siêu Công Cụ Claude Code (Quà 20/10)",
-    "desc_vi": "Popup prompt nổi, dán vào con trỏ, chibi hồng/xanh, hiệu ứng chuột, công cụ dòng lệnh.",
-    "desc_en": "Floating prompt popup that pastes at your cursor, pink/blue chibi themes, mouse effects, CLI tools.",
-    "url": "https://github.com/phamhuutienpro/Claude-SuperTools-1Click",
-    "installer": "Cai-Dat-1-Click.ps1",
-    "tags": ["claude", "prompt", "popup", "quà 20/10"]
-  }
+    {
+        "id":  "claude-supertools-1click",
+        "name":  "Claude SuperTools 1-Click",
+        "name_vi":  "Siêu Công Cụ Claude Code (Quà 20/10)",
+        "desc_vi":  "Popup prompt nổi, dán vào con trỏ, chibi hồng/xanh, hiệu ứng chuột, công cụ dòng lệnh.",
+        "desc_en":  "Floating prompt popup that pastes at your cursor, pink/blue chibi themes, mouse effects, CLI tools.",
+        "url":  "https://github.com/phamhuutienpro/Claude-SuperTools-1Click",
+        "installer":  "Cai-Dat-1-Click.ps1",
+        "tags":  [
+                     "claude",
+                     "prompt",
+                     "popup",
+                     "quà 20/10"
+                 ]
+    },
+    {
+        "id":  "tts",
+        "name":  "TTS Pro",
+        "name_vi":  "TTS Pro - Văn bản thành giọng nói",
+        "desc_vi":  "Ứng dụng chuyển văn bản thành giọng nói song ngữ (PyQt6 + Gemini). Tự cài thư viện Python.",
+        "desc_en":  "Bilingual text-to-speech desktop app (PyQt6 + Gemini). Installs its Python libraries automatically.",
+        "url":  "https://github.com/phamhuutienpro/tts",
+        "installer":  "",
+        "setup":  [
+                      {
+                          "type":  "pip",
+                          "packages":  [
+                                           "PyQt6",
+                                           "requests",
+                                           "cryptography",
+                                           "google-genai"
+                                       ]
+                      }
+                  ],
+        "launch":  "python tts.py",
+        "tags":  [
+                     "tts",
+                     "python",
+                     "giọng nói"
+                 ]
+    },
+    {
+        "id":  "dichvanban",
+        "name":  "Dịch văn bản",
+        "name_vi":  "Dịch văn bản",
+        "desc_vi":  "Ứng dụng dịch văn bản tạo từ AI Studio. Hiện repo chỉ có README, chưa có mã để cài.",
+        "desc_en":  "Text translation app made with AI Studio. The repo currently only has a README, no installable code yet.",
+        "url":  "https://github.com/phamhuutienpro/dichvanban",
+        "installer":  "",
+        "setup":  [
+
+                  ],
+        "launch":  "",
+        "tags":  [
+                     "dịch",
+                     "ai studio"
+                 ]
+    }
 ]

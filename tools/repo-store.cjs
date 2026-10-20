@@ -26,6 +26,7 @@ function fetchText(url) {
   });
 }
 async function loadCatalog() {
+  if (process.env.REPO_STORE_CATALOG) { try { return { list: JSON.parse(fs.readFileSync(process.env.REPO_STORE_CATALOG, 'utf8')), src: 'file thu nghiem' }; } catch {} }
   try { return { list: JSON.parse(await fetchText(CATALOG_URL)), src: 'GitHub' }; } catch (e) {
     try { return { list: JSON.parse(fs.readFileSync(localCatalog, 'utf8')), src: 'ban kem theo (khong ket noi duoc GitHub)' }; } catch { return { list: [], src: 'trong' }; }
   }
@@ -41,14 +42,29 @@ function behind(dir) {
   const r = git(['rev-list', '--count', 'HEAD..@{u}'], dir);
   return r.ok ? parseInt(r.out, 10) || 0 : -1;
 }
-function runInstaller(e, dir) {
-  const inst = path.join(dir, e.installer || 'Cai-Dat-1-Click.ps1');
-  if (!fs.existsSync(inst)) { say('Repo nay khong co trinh cai dat; xem README trong ' + dir); return 0; }
-  say(`Chay trinh cai dat: ${inst}`);
-  const r = spawnSync('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', inst], { cwd: dir, stdio: 'inherit' });
-  return r.status || 0;
+function runSetup(e, dir) {
+  const inst = e.installer ? path.join(dir, e.installer) : '';
+  if (inst && fs.existsSync(inst)) {
+    say(`Chay trinh cai dat: ${inst}`);
+    const r = spawnSync('powershell', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', inst], { cwd: dir, stdio: 'inherit' });
+    return r.status || 0;
+  }
+  let code = 0;
+  for (const s of e.setup || []) {
+    if (s.type === 'pip') {
+      say(`Cai thu vien Python: ${s.packages.join(' ')}`);
+      const r = spawnSync('python', ['-m', 'pip', 'install', '--user', ...s.packages], { cwd: dir, stdio: 'inherit' });
+      if (r.status) { code = r.status; say('Cai thu vien that bai. Kiem tra da cai Python chua (python.org).'); }
+    } else if (s.type === 'npm') {
+      say('Chay npm install');
+      const r = spawnSync('npm', ['install'], { cwd: dir, stdio: 'inherit', shell: true });
+      if (r.status) code = r.status;
+    }
+  }
+  if (!inst && !(e.setup || []).length) say('Repo nay khong co trinh cai dat; chi tai ve. Xem README trong ' + dir);
+  if (e.launch) say(`Cach chay: cd "${dir}" ; ${e.launch}`);
+  return code;
 }
-
 (async () => {
   const [, , cmd = 'help', ...args] = process.argv;
   const noRun = args.includes('--no-run');
@@ -73,7 +89,7 @@ function runInstaller(e, dir) {
       if (isInstalled(e)) say('Da co ban cai; dung "repo-store update ' + e.id + '" de cap nhat.');
       else { const c = git(['clone', '--depth', '1', e.url, dir], process.cwd()); say(c.out); if (!c.ok) fail('Tai ve that bai.'); }
       say('Da tai ve ' + dir);
-      if (!noRun) process.exit(runInstaller(e, dir));
+      if (!noRun) process.exit(runSetup(e, dir));
       break;
     }
     case 'update': {
@@ -87,7 +103,7 @@ function runInstaller(e, dir) {
         const b = behind(dir);
         if (b === 0) { say(`${e.id}: da la ban moi nhat.`); continue; }
         const p = git(['pull', '--ff-only'], dir); say(`${e.id}: ${p.out.split('\n').pop()}`);
-        if (p.ok && !noRun) runInstaller(e, dir);
+        if (p.ok && !noRun) runSetup(e, dir);
       }
       break;
     }
