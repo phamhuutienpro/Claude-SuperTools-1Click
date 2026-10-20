@@ -55,14 +55,6 @@ if (Test-Path $promptHubMd) {
     Write-Host "[3/5] Đã sao chép PROMPT_HUB.md vào $targetClaudeDir" -ForegroundColor Green
 }
 
-# Cai skill repo-manager cho Claude Code
-$srcSkill = Join-Path $currentDir "skills\repo-manager"
-if (Test-Path $srcSkill) {
-    $dstSkill = Join-Path $targetClaudeDir "skills\repo-manager"
-    New-Item -ItemType Directory -Path $dstSkill -Force | Out-Null
-    Copy-Item -Path (Join-Path $srcSkill "*") -Destination $dstSkill -Recurse -Force
-    Write-Host "      + skill repo-manager -> $dstSkill" -ForegroundColor DarkGray
-}
 # 4. Tự động thêm vào biến môi trường PATH của User
 Write-Host "[4/5] Đang kiểm tra và cấu hình biến môi trường PATH..." -ForegroundColor Green
 $userPath = [System.Environment]::GetEnvironmentVariable("Path", "User")
@@ -91,7 +83,7 @@ The system is equipped with global agentic tools located in `%USERPROFILE%\.clau
 - `cdp-browse <url>`: Chrome/Edge CDP inspection & UI freeze detector.
 - `daemon-mgr <start|list|kill> [args]`: Background daemon process manager & port checker.
 - `pkg-backup exe <file.js>`: Package your Node.js app into a standalone .exe.
-- `repo-hub <list|new|sync|visibility|rename|clone|install>`: Manage your GitHub repos (needs git + gh).
+- `repo-store <list|install|update|remove>`: Browse, install and update repos from the maintainer's store (read-only).
 - `visual-diff <img1.png> <img2.png>`: Visual regression testing.
 - `knowledge-hub <save|search> [args]`: Long-term solution persistence.
 - `prompt-hub`: Opens Prompt Hub UI (default port 3900).

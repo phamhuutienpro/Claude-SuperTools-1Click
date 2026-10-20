@@ -1,0 +1,12 @@
+[
+  {
+    "id": "claude-supertools-1click",
+    "name": "Claude SuperTools 1-Click",
+    "name_vi": "Siêu Công Cụ Claude Code (Quà 20/10)",
+    "desc_vi": "Popup prompt nổi, dán vào con trỏ, chibi hồng/xanh, hiệu ứng chuột, công cụ dòng lệnh.",
+    "desc_en": "Floating prompt popup that pastes at your cursor, pink/blue chibi themes, mouse effects, CLI tools.",
+    "url": "https://github.com/phamhuutienpro/Claude-SuperTools-1Click",
+    "installer": "Cai-Dat-1-Click.ps1",
+    "tags": ["claude", "prompt", "popup", "quà 20/10"]
+  }
+]

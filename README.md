@@ -24,7 +24,7 @@ cd Claude-SuperTools-1Click
 .\Cai-Dat-1-Click.cmd
 ```
 
-Trình cài đặt sao chép công cụ vào `%USERPROFILE%\.claude\tools`, cài skill vào `%USERPROFILE%\.claude\skills`, tạo shortcut khởi động cùng Windows và chạy popup. Cài không bật popup: `Cai-Dat-1-Click.ps1 -NoPopup`.
+Trình cài đặt sao chép công cụ vào `%USERPROFILE%\.claude\tools`, tạo shortcut khởi động cùng Windows và chạy popup. Cài không bật popup: `Cai-Dat-1-Click.ps1 -NoPopup`.
 
 ## ✨ Popup "Siêu Công Cụ Claude Code"
 
@@ -34,7 +34,7 @@ Trình cài đặt sao chép công cụ vào `%USERPROFILE%\.claude\tools`, cài
 | Dán vào con trỏ | Nhấp đôi một prompt: tự copy, đóng popup, trả focus và dán |
 | Không chiếm con trỏ | Cửa sổ không giành focus; chỉ lấy focus khi bạn bấm vào ô nhập |
 | Tham số | 5 ô dùng chung: Cổng, Tình trạng, Yêu cầu, Mô tả lỗi, Mục đích (được ghi nhớ) |
-| Thư viện | 22 prompt chia tab: trình duyệt, server, so sánh giao diện, kho tri thức, lập trình, đóng gói, quản lý repo |
+| Thư viện | 22 prompt chia tab: trình duyệt, server, so sánh giao diện, kho tri thức, lập trình, đóng gói, kho repo |
 | Giao diện | Hồng (nhân vật nữ) / xanh (nhân vật nam) đổi bằng nút 🌈; chibi riêng cho từng prompt |
 | Banner | 100 câu động lực VI/EN, đổi mỗi 120 giây |
 | Hiệu ứng chuột | Vệt lấp lánh, nổ hạt khi bấm, thẻ phát sáng; tắt được ở ô **Hiệu ứng** |
@@ -49,34 +49,32 @@ Trình cài đặt sao chép công cụ vào `%USERPROFILE%\.claude\tools`, cài
 | `pkg-backup exe <file.js>` | Đóng gói app Node.js thành `.exe` |
 | `visual-diff a.png b.png` | So sánh ảnh giao diện trước/sau |
 | `knowledge-hub save/search` | Lưu và tra cứu bài học sửa lỗi |
-| `repo-hub ...` | Quản lý repo GitHub (xem bên dưới) |
+| `repo-store ...` | Kho repo: xem, cài, cập nhật (xem bên dưới) |
 
-## 🐙 Quản lý repo GitHub (repo-hub + skill)
+## 🐙 Kho repo & cập nhật (cho người dùng)
 
-Cần `git` và `gh` (GitHub CLI, `winget install GitHub.cli`, rồi `gh auth login`).
+Kho repo là danh sách các dự án của tác giả để bạn tự chọn cài và cập nhật. **Chỉ đọc**: bạn không có và không cần quyền sửa/xóa gì trên GitHub của tác giả. Cần `git` (không cần đăng nhập GitHub).
 
 ```powershell
-repo-hub list                              # repo đã đăng ký + trạng thái
-repo-hub new D:\du-an [--public]           # tạo repo mới (mặc định Private), commit, push
-repo-hub sync [tên] -m "nội dung"          # add + commit + pull --rebase + push
-repo-hub visibility <tên> public --yes     # đổi Public/Private (cần --yes)
-repo-hub rename <tên> <tên_mới> --yes
-repo-hub clone <link> / repo-hub install <link>
+repo-store list                       # repo trong kho + đã cài / có bản mới chưa
+repo-store install <id>               # tải về và chạy trình cài đặt của repo đó
+repo-store update <id>                # lấy bản mới (bỏ qua nếu bạn đã sửa file, không ghi đè)
+repo-store update --all               # cập nhật tất cả repo đã cài
+repo-store remove <id> --yes          # xóa bản tải về trên máy bạn
 ```
 
-Skill `repo-manager` (trong `skills/repo-manager`) dạy Claude Code quy trình an toàn khi thêm hoặc sửa repo: xem hiện trạng trước, kiểm tra bí mật, hỏi lại trước khi chuyển Public, đổi tên hay force-push. Trong popup có sẵn các prompt ở tab **Quản Lý Repo GitHub**.
-
+Trong popup có tab **Kho Repo & Cập Nhật** với 3 prompt tương ứng để nhờ AI làm giúp. Repo được tải về `%USERPROFILE%\.claude\installed\<id>`. Kho chỉ chấp nhận link thuộc `github.com/phamhuutienpro`.
 ## 📁 Cấu trúc
 
 ```
 Cai-Dat-1-Click.cmd/.ps1   trình cài đặt
 INSTALL_PROMPT.md          prompt cài đặt bằng AI
 Test-Tu-Dong.ps1           kiểm thử tự động popup
-skills/repo-manager/       skill quản lý repo
 tools/popup-host.ps1       popup WPF + phím tắt + khay hệ thống
 tools/prompts_library.json thư viện prompt
 tools/quotes.json          100 câu động lực
-tools/repo-hub.cjs         quản lý repo
+tools/repo-catalog.json     danh sách repo trong kho
+tools/repo-store.cjs       kho repo (cài và cập nhật)
 tools/chibi-*.png          nhân vật (nguồn SVG trong tools/chibi-src)
 ```
 
@@ -90,7 +88,7 @@ Kiểm tra: popup hiện bằng phím tắt, giữ focus ô nhập, nhấp đôi
 
 ## 🗑️ Gỡ cài đặt
 
-Chuột phải icon khay → **Thoát**; xóa shortcut `SieuCongCuClaudeCode.lnk` trong `shell:startup`; xóa các file trong `%USERPROFILE%\.claude\tools` và `%USERPROFILE%\.claude\skills\repo-manager` nếu muốn.
+Chuột phải icon khay → **Thoát**; xóa shortcut `SieuCongCuClaudeCode.lnk` trong `shell:startup`; xóa các file trong `%USERPROFILE%\.claude\tools` nếu muốn.
 
 ## Lưu ý / Notes
 

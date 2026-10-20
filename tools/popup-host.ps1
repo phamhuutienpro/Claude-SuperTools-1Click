@@ -190,7 +190,7 @@ $script:chibiMap = @{
     'visual-diff-regression' = 'loupe'; 'visual-responsive' = 'camera'; 'knowledge-save-lesson' = 'book'; 'knowledge-search' = 'book'
     'coding-refactor-safe' = 'laptop'; 'coding-write-tests' = 'check'; 'coding-explain-code' = 'laptop'; 'coding-precommit-review' = 'check'
     'project-health-review' = 'check'; 'pkg-build-exe' = 'box'; 'pkg-zip-backup' = 'box'
-    'repo-install-from-link' = 'box'; 'repo-new-upload' = 'rocket'; 'repo-manage-existing' = 'check'
+    'repo-store-list' = 'book'; 'repo-store-install' = 'box'; 'repo-store-update' = 'rocket'
 }
 
 function Get-PromptText($id, $lang, $params) {
