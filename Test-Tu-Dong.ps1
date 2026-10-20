@@ -26,6 +26,9 @@ public static class TT {
 $dir = Join-Path $PSScriptRoot 'tools'
 $title = 'Siêu Công Cụ Claude Code'
 $results = @()
+$setFile = Join-Path $env:LOCALAPPDATA 'PromptSpotlight\settings.json'
+$setBak = "$setFile.bak"
+if (Test-Path $setFile) { Move-Item $setFile $setBak -Force }
 
 function Kill-All {
     Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like '*popup-host.ps1*' -or $_.Name -eq 'mshta.exe' -or $_.CommandLine -like '*PromptSpotlight*' -or $_.CommandLine -like '*tb-test.ps1*' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
@@ -92,5 +95,7 @@ foreach ($mode in $Modes) {
     $results += [pscustomobject]@{ Mode = $mode; PopupShown = $shown; TestBoxFocused = $tbFg; KeptFocus = $keptFocus; Pasted = $pasted }
     Kill-All
 }
+Remove-Item $setFile -ErrorAction SilentlyContinue
+if (Test-Path $setBak) { Move-Item $setBak $setFile -Force }
 $results | Format-Table -AutoSize | Out-String | Write-Host
 if (($results | Where-Object { -not $_.PopupShown -or -not $_.Pasted })) { exit 1 }

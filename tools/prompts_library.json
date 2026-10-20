@@ -523,5 +523,88 @@
                      "commit",
                      "kiểm tra"
                  ]
+    },
+    {
+        "id":  "repo-install-from-link",
+        "category":  "repo",
+        "category_name":  "🐙 Quản Lý Repo GitHub",
+        "icon":  "⬇️",
+        "title":  "Cài đặt dự án từ link GitHub (AI tự cài)",
+        "trigger_when":  "Khi bạn có một link GitHub và muốn AI IDE tự clone, cài, kiểm tra giúp.",
+        "purpose":  "AI tự clone, chạy trình cài đặt, kiểm tra thật và báo cáo.",
+        "tool_command":  "repo-hub install \"{link}\"",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Chưa cài dự án này",
+                               "requirement":  "Cài đặt tự động và kiểm tra",
+                               "error":  "",
+                               "purpose":  "Dùng được ngay sau khi cài",
+                               "link":  "https://github.com/phamhuutienpro/Claude-SuperTools-1Click"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Hãy cài đặt dự án từ link {link}: clone vào %USERPROFILE%\\.claude\\installed, đọc README, chạy Cai-Dat-1-Click.ps1 (hoặc làm theo README), kiểm tra kết quả thật rồi báo cáo. Chỉ ghi vào %USERPROFILE%\\.claude và thư mục Startup; đọc script trước khi chạy và dừng nếu thấy lệnh lạ.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Install the project from {link}: clone into %USERPROFILE%\\.claude\\installed, read the README, run Cai-Dat-1-Click.ps1 (or follow the README), verify for real and report. Write only to %USERPROFILE%\\.claude and the Startup folder; read scripts before running and stop on anything suspicious.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Hãy cài đặt dự án từ link {link}: clone vào %USERPROFILE%\\.claude\\installed, đọc README, chạy Cai-Dat-1-Click.ps1 (hoặc làm theo README), kiểm tra kết quả thật rồi báo cáo. Chỉ ghi vào %USERPROFILE%\\.claude và thư mục Startup; đọc script trước khi chạy và dừng nếu thấy lệnh lạ.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Install the project from {link}: clone into %USERPROFILE%\\.claude\\installed, read the README, run Cai-Dat-1-Click.ps1 (or follow the README), verify for real and report. Write only to %USERPROFILE%\\.claude and the Startup folder; read scripts before running and stop on anything suspicious.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "cài đặt",
+                     "github",
+                     "clone",
+                     "link",
+                     "install"
+                 ]
+    },
+    {
+        "id":  "repo-new-upload",
+        "category":  "repo",
+        "category_name":  "🐙 Quản Lý Repo GitHub",
+        "icon":  "🆕",
+        "title":  "Đưa thư mục lên GitHub thành repo mới",
+        "trigger_when":  "Khi có một dự án trên máy và muốn tạo repo GitHub mới cho nó.",
+        "purpose":  "Kiểm tra bí mật, tạo repo (mặc định Private), commit, push và đăng ký vào repo-hub.",
+        "tool_command":  "repo-hub new \"{dir}\"",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Dự án chưa có trên GitHub",
+                               "requirement":  "Tạo repo Private mới và push",
+                               "error":  "",
+                               "purpose":  "Có bản lưu trên GitHub",
+                               "dir":  "."
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Dùng skill repo-manager và repo-hub: kiểm tra thư mục {dir} không chứa bí mật (.env, token, khóa API), rồi tạo repo GitHub Private mới, commit, push và đăng ký vào repo-hub. Hỏi tôi trước khi chuyển Public.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Use the repo-manager skill and repo-hub: check {dir} for secrets (.env, tokens, API keys), then create a new Private GitHub repo, commit, push and register it in repo-hub. Ask me before making it Public.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Dùng skill repo-manager và repo-hub: kiểm tra thư mục {dir} không chứa bí mật (.env, token, khóa API), rồi tạo repo GitHub Private mới, commit, push và đăng ký vào repo-hub. Hỏi tôi trước khi chuyển Public.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Use the repo-manager skill and repo-hub: check {dir} for secrets (.env, tokens, API keys), then create a new Private GitHub repo, commit, push and register it in repo-hub. Ask me before making it Public.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "repo mới",
+                     "github",
+                     "upload",
+                     "push",
+                     "private"
+                 ]
+    },
+    {
+        "id":  "repo-manage-existing",
+        "category":  "repo",
+        "category_name":  "🐙 Quản Lý Repo GitHub",
+        "icon":  "🔧",
+        "title":  "Quản lý, sửa và đồng bộ các repo đang có",
+        "trigger_when":  "Khi muốn xem repo nào đang có thay đổi, cập nhật, đổi Public/Private hoặc đổi tên.",
+        "purpose":  "Xem trạng thái các repo, đồng bộ an toàn và xin xác nhận trước thao tác nhạy cảm.",
+        "tool_command":  "repo-hub list",
+        "default_params":  {
+                               "port":  "3900",
+                               "status":  "Nhiều repo, không biết cái nào chưa đồng bộ",
+                               "requirement":  "Xem trạng thái và đồng bộ an toàn",
+                               "error":  "",
+                               "purpose":  "Mọi repo đều được cập nhật"
+                           },
+        "prompt_template_vi":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Dùng skill repo-manager: chạy repo-hub list và repo-hub status, cho tôi xem repo nào có thay đổi chưa commit hoặc chưa push, đọc nhanh diff, rồi đồng bộ bằng repo-hub sync với lời nhắn commit rõ ràng. Hỏi tôi trước khi đổi Public, đổi tên hay xóa.\nMục đích mong muốn: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "prompt_template_en":  "Status: {status}.\nRequirement: {requirement}. Use the repo-manager skill: run repo-hub list and repo-hub status, show which repos have uncommitted or unpushed changes, skim the diff, then sync with repo-hub sync and a clear commit message. Ask me before making anything Public, renaming or deleting.\nGoal: {purpose}.\n\nPROPOSE IDEAS AND SOLUTIONS.\nASK ME IN 2 ROUNDS, EACH ROUND WITH A FEW QUESTIONS TO DISCUSS AND CONFIRM.",
+        "prompt_template_bilingual":  "Tình trạng hiện tại: {status}.\nYêu cầu: {requirement}. Dùng skill repo-manager: chạy repo-hub list và repo-hub status, cho tôi xem repo nào có thay đổi chưa commit hoặc chưa push, đọc nhanh diff, rồi đồng bộ bằng repo-hub sync với lời nhắn commit rõ ràng. Hỏi tôi trước khi đổi Public, đổi tên hay xóa.\nMục đích mong muốn: {purpose}.\nStatus: {status}.\nRequirement: {requirement}. Use the repo-manager skill: run repo-hub list and repo-hub status, show which repos have uncommitted or unpushed changes, skim the diff, then sync with repo-hub sync and a clear commit message. Ask me before making anything Public, renaming or deleting.\nGoal: {purpose}.\n\nĐỀ XUẤT Ý TƯỞNG, GIẢI PHÁP.\nHỎI LẠI 2 đợt , mỗi đợt hỏi TÔI VÀI CÂU ĐỂ TRAO ĐỔI VÀ XÁC NHẬN.",
+        "tags":  [
+                     "quản lý repo",
+                     "sync",
+                     "status",
+                     "visibility",
+                     "github"
+                 ]
     }
 ]
