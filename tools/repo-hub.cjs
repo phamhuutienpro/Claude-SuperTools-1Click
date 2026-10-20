@@ -45,6 +45,7 @@ function register(reg, p) {
   return item;
 }
 function ensureIdentity(cwd) {
+  if (!git(['config', '--get-all', 'credential.https://github.com.helper'], cwd).out.includes('gh')) gh(['auth', 'setup-git'], cwd);
   if (!git(['config', 'user.name'], cwd).out) {
     const login = gh(['api', 'user', '--jq', '.login'], cwd);
     if (login.ok) git(['config', 'user.name', login.out], cwd);
