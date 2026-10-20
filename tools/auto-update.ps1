@@ -37,8 +37,18 @@ function Set-State($s) {
 function Web { $w = New-Object System.Net.WebClient; $w.Encoding = [Text.Encoding]::UTF8; $w.Headers['User-Agent'] = 'SieuCongCu-Updater'; $w }
 function Local-Version { $f = Join-Path $tools 'VERSION'; if (Test-Path $f) { try { [version]((Get-Content $f -Raw).Trim()) } catch { [version]'0.0.0' } } else { [version]'0.0.0' } }
 function Remote-Version {
-    $sep = if ($RemoteBase -match '^https?:') { "?t=$([DateTime]::UtcNow.Ticks)" } else { '' }
-    $t = ((Web).DownloadString("$RemoteBase/VERSION$sep")).Trim()
+    $t = $null
+    if ($RemoteBase -match '^https://raw\.githubusercontent\.com/phamhuutienpro/Claude-SuperTools-1Click/main/tools$') {
+        # API khong bi CDN giu cache nhu raw.githubusercontent.com
+        try {
+            $t = [string](Invoke-RestMethod -Uri 'https://api.github.com/repos/phamhuutienpro/Claude-SuperTools-1Click/contents/tools/VERSION?ref=main' -Headers @{ 'User-Agent' = 'SieuCongCu-Updater'; 'Accept' = 'application/vnd.github.raw' } -TimeoutSec 12)
+            $t = $t.Trim()
+        } catch { $t = $null }
+    }
+    if (-not $t) {
+        $sep = if ($RemoteBase -match '^https?:') { "?t=$([DateTime]::UtcNow.Ticks)" } else { '' }
+        $t = ((Web).DownloadString("$RemoteBase/VERSION$sep")).Trim()
+    }
     if ($t -notmatch '^\d+\.\d+\.\d+$') { throw "VERSION tu xa khong hop le: $t" }
     [version]$t
 }
