@@ -1,3 +1,5 @@
+v1.2.0 (2026-10-20) - Cap nhat tu dong: 9 tep: Cai-Dat-1-Click.ps1, README.md, docs/index.html, tools/auto-update.ps1 +5
+v1.2.0 (2026-10-20) - Automatic update: 9 tep: Cai-Dat-1-Click.ps1, README.md, docs/index.html, tools/auto-update.ps1 +5
 v1.1.1 (2026-10-20) - Cap nhat tu dong: vai tep: 
 v1.1.1 (2026-10-20) - Automatic update: vai tep: 
 v1.1.0 - Tu cap nhat nen, kho repo co tts va dichvanban, trang web song ngu.
