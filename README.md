@@ -6,7 +6,13 @@ A Windows toolkit for Claude Code: a **floating popup** with a prompt library th
 
 ## ⚡ Cài đặt bằng AI (khuyên dùng) / Install with your AI IDE
 
-Mở file [INSTALL_PROMPT.md](INSTALL_PROMPT.md), copy khối lệnh, dán vào AI IDE (Claude Code, Cursor, Windsurf, Antigravity...) kèm link repo này, AI sẽ tự cài, kiểm tra và báo cáo.
+Một dòng, không cần tải file trước (dán vào AI IDE):
+
+```text
+Đọc https://raw.githubusercontent.com/phamhuutienpro/Claude-SuperTools-1Click/main/INSTALL_PROMPT.md rồi làm đúng hướng dẫn trong đó để cài dự án https://github.com/phamhuutienpro/Claude-SuperTools-1Click cho tôi. Tự làm hết các bước, đọc script trước khi chạy, báo cáo song ngữ khi xong.
+```
+
+Hoặc Mở file [INSTALL_PROMPT.md](INSTALL_PROMPT.md), copy khối lệnh, dán vào AI IDE (Claude Code, Cursor, Windsurf, Antigravity...) kèm link repo này, AI sẽ tự cài, kiểm tra và báo cáo.
 
 Open [INSTALL_PROMPT.md](INSTALL_PROMPT.md), copy the block into your AI IDE with the repo link, and it installs, verifies and reports by itself.
 

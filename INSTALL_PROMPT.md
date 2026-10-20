@@ -1,5 +1,20 @@
 # Prompt cài đặt tự động bằng AI IDE / One-shot install prompt
 
+## ⚡ Câu lệnh ngắn (gửi cho bạn bè) / Short command
+
+Copy một dòng này, dán vào AI IDE (Claude Code, Cursor, Windsurf, Antigravity...). Không cần tải file trước:
+
+```text
+Đọc https://raw.githubusercontent.com/phamhuutienpro/Claude-SuperTools-1Click/main/INSTALL_PROMPT.md rồi làm đúng hướng dẫn trong đó để cài dự án https://github.com/phamhuutienpro/Claude-SuperTools-1Click cho tôi. Tự làm hết các bước, đọc script trước khi chạy, báo cáo song ngữ khi xong.
+```
+
+English:
+
+```text
+Read https://raw.githubusercontent.com/phamhuutienpro/Claude-SuperTools-1Click/main/INSTALL_PROMPT.md and follow it exactly to install https://github.com/phamhuutienpro/Claude-SuperTools-1Click for me. Do every step yourself, read scripts before running them, and report bilingually when done.
+```
+Hoặc dùng bản đầy đủ bên dưới / Or use the full version below:
+
 Copy toàn bộ khối bên dưới, dán vào AI IDE (Claude Code, Cursor, Windsurf, Antigravity, Copilot Chat...), thay dòng `LINK GITHUB` bằng link repo, rồi gửi.
 
 Copy the whole block below into your AI IDE, replace the `LINK GITHUB` line with the repo link, and send.
